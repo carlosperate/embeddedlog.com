@@ -22,7 +22,7 @@ class BuildMode(Enum):
 
 
 # Set the default mode here
-BUILD_MODE = BuildMode.LOCALHOST_ABSOLUTE
+BUILD_MODE = BuildMode.LOCALHOST_RELATIVE
 
 
 def get_build_mode():

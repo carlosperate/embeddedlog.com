@@ -14,9 +14,9 @@ General documentation also found in the
 ```
 pip install pelican
 pip install markdown
-pip install requests
-pip install feedparser
-pip install scrapy
+pip install webpreview
+pip install invoke
+pip install setuptools
 ```
 
 Or if you have pipenv:
@@ -38,6 +38,13 @@ From the root directory of this repository:
 
 ```
 pelican -s pelicanconf.py
+```
+
+To automatically build on each file change and automatically serving files
+to http://127.0.0.1:8080 :
+
+```
+pelican -s pelicanconf.py --autoreload --listen
 ```
 
 For the final publishing output the `pelicanconfpublish.py` script imports the

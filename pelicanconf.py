@@ -50,6 +50,7 @@ elif BUILD_MODE == BuildMode.PUBLISH:
     RELATIVE_URLS = False
 else:
     raise Exception('Incorrect BUILD_MODE value: {}'.format(BUILD_MODE))
+print(f"Site URL set to: {SITEURL}\nRelative URLs {'enabled' if RELATIVE_URLS else 'disabled'}")
 PATH = os.path.join(PROJECT_ROOT, 'embeddedlog')
 STATIC_PATHS = ['images']    # Relative to PATH
 OUTPUT_RETENTION = []
