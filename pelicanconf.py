@@ -133,6 +133,7 @@ PLUGINS = [
     'pelican_youtube',
     'embed_tweet',
     'social_card',
+    'reading_time',
     # Don't use the medium scrapper plugin any more
     # 'medium_previews'
 ]

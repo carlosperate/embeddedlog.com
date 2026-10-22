@@ -21,7 +21,7 @@
             <time datetime="{{ article.modified.isoformat() }}">{{ article.locale_modified }}</time>
         {% endcall %}
     {% endif %}
-    {% call metadata('', 'fa-clock') %}3 min{% if quiet_metadata|default(False) %} read{% endif %}{% endcall %}
+    {% call metadata('', 'fa-clock') %}{{ article.reading_time }} min{% if quiet_metadata|default(False) %} read{% endif %}{% endcall %}
 
     {% if SHOW_SERIES and article.series %}
         {% call metadata('Series') %}Part {{ article.series.index}} of {{ article.series.name }}{% endcall %}

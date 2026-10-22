@@ -11,6 +11,9 @@ This directory contains hard copies of the pelican pluggins used for the website
 * Social Card
     - Custom plugin to fetch URLs social media cards during build and add it to
       the article as static HTML
+* Reading Time
+    - Custom plugin to estimate the reading time of an article from its
+      Markdown source, timing prose, code and images separately
 * Medium Preview
     - Custom built for this website to include Medium Post previews
     - Quite likely not used any more and not part of the website
