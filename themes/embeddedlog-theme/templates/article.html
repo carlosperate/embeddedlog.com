@@ -69,10 +69,11 @@
                             {% if DISPLAY_CATEGORY_IN_BREADCRUMBS %}
                                 <li><a href="{{ SITEURL }}/{{ article.category.url }}" title="{{ article.category }}">{{ article.category }}</a></li>
                             {% endif %}
-                            <li></li>
                         </ol>
                         <div class="breadcrumb breadcrump-labels">
-                            {% include "includes/article_info.html" %}
+                            {% with quiet_metadata = True %}
+                                {% include "includes/article_info.html" %}
+                            {% endwith %}
                         </div>
                     </div>
                 {% endif %}
@@ -112,6 +113,7 @@
 {% if SHARIFF|default(false) %}
     <!-- add shariff support -->
     <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/shariff.min.js"></script>
+    <script src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/article-sharing.js"></script>
 {% endif %}
 
 {% endblock %}

@@ -10,9 +10,12 @@ into a generic pelican project without some modifications.
 
 Other changes:
 - Font Awesome been updated from version v4.x to v5.9.
-- Shariff has been updated from version v1.7.3 to v3.2.1.
+- Shariff has been updated from version v1.7.3 to v3.3.1.
     - SHARIFF_BUTTON_STYLE option created with the update
     - CSS overwritten for round corners
+    - Vendored JavaScript and CSS are
+      sourced from the [OJS Shariff v3_5_0-1 release](https://github.com/ojsde/shariff/releases/tag/v3_5_0-1).
+      See [the vendored asset notes](static/css/shariff/README.md).
 
 The original pelican-bootstrap3 theme has been moved from its own repository
 https://github.com/DandyDev/pelican-bootstrap3 to be part of pelican-themes:

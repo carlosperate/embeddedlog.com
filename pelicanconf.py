@@ -97,6 +97,7 @@ IGNORE_FILES = ['README.md']
 # Article and Categories data
 ARTICLE_URL = '{category}/{slug}.html'
 ARTICLE_SAVE_AS = '{category}/{slug}.html'
+TEMPLATE_PAGES = {'tag-web-tech.html': 'tag/web-tech.html'}
 CATEGORY_URL = '{slug}/index.html'
 CATEGORY_SAVE_AS = '{slug}/index.html'
 USE_FOLDER_AS_CATEGORY = True
@@ -181,7 +182,7 @@ SHARIFF_LANG = 'en'
 SHARIFF_ORIENTATION = 'horizontal'  # horizontal, vertical
 SHARIFF_BUTTON_STYLE = 'standard'   # standard, icon, icon-count
 SHARIFF_TWITTER_VIA = 'carlosperate'
-SHARIFF_SERVICES = '[&quot;twitter&quot;, &quot;facebook&quot;, &quot;linkedin&quot;, &quot;reddit&quot;, &quot;pocket&quot;, &quot;whatsapp&quot;]'
+SHARIFF_SERVICES = ['twitter', 'facebook', 'linkedin', 'reddit', 'whatsapp']
 
 # In the EmbeddedLog theme this is the top box in the index.html only
 ABOUT_ME = True

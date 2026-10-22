@@ -613,7 +613,7 @@ ul.nav .dropdown-menu li.active a {
 /********************************/
 .container-blurry {
     backdrop-filter: blur(10px);
-    background: rgba(255,255,255,.55);
+    background: rgba(255, 255, 255, .6);
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 .container-blurry h1 {
@@ -626,10 +626,9 @@ ul.nav .dropdown-menu li.active a {
 
 #article-title-breadcrumps .aboutme-container {
     margin: -90px 0 36px 0;
-    /* First shadow has been removed using alpha=0, but easy to add again*/
-    box-shadow: rgba(17, 17, 26, 0.0) 0px 0px 16px,
-        -5px -8px 15px -3px rgba(0,0,0,0.2),
-        6px -9px 15px -3px rgba(0,0,0,0.2);
+    /* Cast onto the recessed carousel, with a softer shadow on the content. */
+    box-shadow: 0 -18px 22px -10px rgba(0, 0, 0, .4),
+        0 2px 9px rgba(0, 0, 0, .10);
 }
 
 /***********************************/
@@ -643,7 +642,7 @@ ul.nav .dropdown-menu li.active a {
     margin-bottom: 21px;
     border-radius: 4px;
 }
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .new-breadcrump {
         flex-direction: column;
     }
@@ -664,6 +663,45 @@ ul.nav .dropdown-menu li.active a {
 .new-breadcrump .breadcrumb {
     margin: 0px;
     padding: 0px;
+}
+
+/* Keep article metadata secondary to the title, with each date on one line. */
+#article-title-breadcrumps .new-breadcrump {
+    padding: 12px 20px;
+    background: #f2f5f5;
+    gap: 6px 20px;
+}
+
+#article-title-breadcrumps .breadcrumb {
+    background: transparent;
+}
+
+.article-metadata {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 6px 18px;
+    color: #526574;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.article-meta-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    white-space: nowrap;
+}
+
+.article-meta-item .fa {
+    margin-right: 2px;
+    color: #6b7d87;
+}
+
+@media (max-width: 991px) {
+    .article-metadata {
+        justify-content: flex-start;
+    }
 }
 
 
@@ -706,47 +744,194 @@ ul.nav .dropdown-menu li.active a {
     }
 }
 
-/**********************/
-/* Overwriting Sharif */
-/**********************/
-/* Sharif aligns to the left, so center it */
-.shariff {
-    text-align: center;
+/**************************/
+/* Article topic links */
+/**************************/
+.article-topics {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin: 28px 0 16px;
+    padding: 12px 0 0;
+    color: #526574;
 }
-.shariff ul {
-    place-content: center;
+
+.article-footer-label {
+    font-size: 14px;
+    flex-basis: 100%;
+    margin-bottom: 2px;
 }
-/* Set a nice border-radius */
-.shariff-button {
-    border-radius: 6px !important;
+
+.article-topics a {
+    display: inline-block;
+    padding: 5px 12px;
+    background: #edf2f3;
+    border-radius: 4px;
+    color: #344e5c;
+    font-size: 14px;
+    line-height: 1.65;
+    text-decoration: none;
 }
-.shariff li .share_text {
-    text-transform: lowercase;
+
+.article-topics a::before {
+    content: '#';
+    color: #7b919b;
+    margin-right: 5px;
 }
-/* Sharif sets max width 160px, too wide with too much empty space inside buttons. */
-@media only screen and (min-width: 768px) {
-    .shariff .orientation-horizontal.button-style-standard li {
-        min-width: 100px !important;
-        max-width: 140px !important;
-    }
-    .shariff .fab {
-        font-size: 24px !important;
+
+.article-topics a:hover,
+.article-topics a:focus-visible {
+    background: #dfe9e9;
+    color: #1e514b;
+}
+
+@media (max-width: 500px) {
+    .article-topics a {
+        padding: 7px 12px;
     }
 }
-/* Sharif decreases the height to 30px, which looks weird, reset to the 768px value. */
-@media only screen and (min-width: 1024px) {
-    .shariff li,.shariff li a {
-        height: auto !important;
+
+/****************************************************/
+/* Shariff overrides: compact buttons and Copy link */
+/* Keep upstream shariff.min.css unchanged.         */
+/****************************************************/
+.article-sharing {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-bottom: 12px;
+    color: #526574;
+}
+
+.article-sharing-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.article-sharing .shariff ul {
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.article-sharing .shariff .orientation-horizontal.button-style-standard li {
+    flex: 0 0 auto;
+    width: auto;
+    min-width: 0;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    border-radius: 5px;
+}
+
+.article-sharing .shariff li a,
+.article-copy-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    height: auto;
+    padding: 7px 14px;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.article-sharing .shariff .button-style-standard li .share_text {
+    display: inline;
+    padding: 0;
+    text-indent: 0;
+    text-transform: none;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.article-sharing .shariff li .fab {
+    width: 18px;
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* Retain the chosen blue palette despite Shariff's new black X default. */
+.article-sharing .shariff .twitter a {
+    background-color: #55acee;
+}
+
+.article-sharing .shariff .twitter a:hover {
+    background-color: #32bbf5;
+}
+
+.article-copy-link {
+    font-family: inherit;
+    color: #fff;
+    background: #2c3e50;
+    border: 0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.article-copy-link[hidden] {
+    display: none;
+}
+
+.article-copy-link:hover {
+    background: #405970;
+}
+
+.article-copy-link.is-copied .fa::before {
+    content: '\f00c';
+}
+
+.article-copy-status {
+    flex-basis: 100%;
+    font-size: 13px;
+}
+
+/* Tablets retain names with slightly smaller text, icons and padding. */
+@media (min-width: 501px) and (max-width: 991px) {
+    .article-sharing-actions,
+    .article-sharing .shariff ul {
+        gap: 8px;
     }
-    .shariff li .share_text {
-        font-size: 14px !important;
+    .article-sharing .shariff li a,
+    .article-copy-link {
+        padding: 6px 11px;
+        gap: 7px;
+        font-size: 13px;
     }
-    .shariff li .fab,.shariff li .far,.shariff li .fas {
-        width: 35px !important;
-        line-height: auto !important;
+    .article-sharing .shariff .button-style-standard li .share_text {
+        font-size: 13px;
     }
-    .shariff li .share_count,.shariff li .share_text {
-        line-height:  35px !important;
+    .article-sharing .shariff li .fab,
+    .article-copy-link .fa {
+        width: 16px;
+        font-size: 16px;
+    }
+}
+
+/* Phones use icon-only buttons, preserving a 44px tap target. */
+@media (max-width: 500px) {
+    .article-sharing-actions,
+    .article-sharing .shariff ul {
+        gap: 4px;
+    }
+    .article-sharing .shariff li a,
+    .article-copy-link {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        gap: 0;
+        justify-content: center;
+    }
+    .article-sharing .shariff .button-style-standard li .share_text,
+    .article-copy-link span {
+        display: none;
+    }
+    .article-copy-link .fa {
+        width: 18px;
+        font-size: 18px;
     }
 }
 

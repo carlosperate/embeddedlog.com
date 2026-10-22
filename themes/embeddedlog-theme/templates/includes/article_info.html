@@ -1,34 +1,40 @@
-<div class="post-info">
-    <span class="label label-default">Created&nbsp;&nbsp;<i class="fa fa-calendar"></i></span>
-    <span class="published post-info-data">
-        <time datetime="{{ article.date.isoformat() }}"> {{ article.locale_date }}</time>
-    </span>
-    {% if SHOW_DATE_MODIFIED and article.modified%}
-        <span class="label label-default">Updated&nbsp;&nbsp;<i class="fa fa-calendar"></i></span>
-        <span class="modified post-info-data">
-            <time datetime="{{ article.modified.isoformat() }}"> {{ article.locale_modified }}</time>
+{# Share metadata fields/settings between the quiet header and badged listings. #}
+{% macro metadata(label, icon='', data_class='') -%}
+    {% if quiet_metadata|default(False) %}
+        <span class="article-meta-item {{ data_class }}">
+            {% if icon %}<i class="fa {{ icon }}" aria-hidden="true"></i>{% endif %}
+            {% if label %}<span class="article-meta-label">{{ label }}</span>{% endif %}
+            {{ caller() }}
         </span>
+    {% else %}
+        <span class="label label-default">{{ label }}{% if label and icon %}&nbsp;&nbsp;{% endif %}{% if icon %}<i class="fa {{ icon }}" aria-hidden="true"></i>{% endif %}</span>
+        <span class="post-info-data {{ data_class }}">{{ caller() }}</span>
     {% endif %}
-    <span class="label label-default"><i class="fa fa-clock"></i></span>
-    <span class="published post-info-data">3 min</span>
+{%- endmacro %}
 
-    {% if SHOW_SERIES %}
-        {% if article.series %}
-            <span class="label label-default">Series</span>
-            <span class="post-info-data">Part {{ article.series.index}} of {{ article.series.name }}</span>
-        {% endif %}
+<div class="post-info{% if quiet_metadata|default(False) %} article-metadata{% endif %}">
+    {% call metadata('Created', 'fa-calendar', 'published') %}
+        <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+    {% endcall %}
+    {% if SHOW_DATE_MODIFIED and article.modified %}
+        {% call metadata('Updated', 'fa-calendar', 'modified') %}
+            <time datetime="{{ article.modified.isoformat() }}">{{ article.locale_modified }}</time>
+        {% endcall %}
+    {% endif %}
+    {% call metadata('', 'fa-clock') %}3 min{% if quiet_metadata|default(False) %} read{% endif %}{% endcall %}
+
+    {% if SHOW_SERIES and article.series %}
+        {% call metadata('Series') %}Part {{ article.series.index}} of {{ article.series.name }}{% endcall %}
     {% endif %}
 
     {% if SHOW_ARTICLE_AUTHOR %}
         {% if article.author %}
-            <span class="label label-default">By&nbsp;&nbsp;<i class="fa fa-user"></i> </span>
-            <span class="post-info-data"><a href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author }}</a></span>
+            {% call metadata('By', 'fa-user') %}<a href="{{ SITEURL }}/{{ article.author.url }}">{{ article.author }}</a>{% endcall %}
         {% endif %}
     {% endif %}
 
     {% if SHOW_ARTICLE_CATEGORY %}
-        <span class="label label-default">Category</span>
-        <span class="post-info-data"><a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a></span>
+        {% call metadata('Category') %}<a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>{% endcall %}
     {% endif %}
 
     {% import 'includes/translations.html' as translations with context %}

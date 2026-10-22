@@ -1,15 +1,8 @@
 {% if article.tags %}
-<hr>
-<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="float: none; margin: 0;">
-    <div class="breadcrumb breadcrump-labels">
-        <span class="label label-default">Tags&nbsp;&nbsp;<i class="fa fa-tags"></i></span>
-        <span class="post-info-data">
-            &nbsp;&nbsp;
-            {% for tag in article.tags %}
-                <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
-                {% if not loop.last %} / {% endif %}
-            {% endfor %}
-        </span>
-    </div>
-</div>
+<nav class="article-topics" aria-label="Article topics">
+    <span class="article-footer-label">Topics</span>
+    {% for tag in article.tags %}
+        <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+    {% endfor %}
+</nav>
 {% endif %}
