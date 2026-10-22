@@ -1,14 +1,15 @@
 Title: Build static documentation from a GitHub Wiki
 Date: 2015-04-20
+Modified: 2015-04-20
 Category: Blog
-Tags: github, documentation, web-tech
+Tags: github, documentation, web
 Slug: static-docs-from-github-wiki
-Authors: carlosperate
-related_posts:
-summary: This article describes how to use Python and MkDocs to generate static pages for documentation written in a GitHub Wiki. This can be useful to take advantage of the GitHub Wiki features and still provide offline access to the information in a user friendly format that can be easily embedded as a help file.
+Lang: en
+banner_image: static-docs-from-github-wiki.jpg
+Summary: Documentation websites can be created using static site generators and markdown files, but did you ever wish anybody contributing to you project could access an easy to use markdown editor without additional services or accounts? GitHub Wikis offers just that, and the markdown files can be accessed via git. So we can use the GitHub Wiki editor and combine it with a static site generator to create our documentation website.
 
 
-One of the goals of [Ardublockly][1], specially taking in consideration that it is based on web technologies, is to be deployable to offline systems without additional dependencies (other than the Arduino IDE). For its documentation [GitHub Wikis][2] was chosen, as it is easy to use, can be viewed and edited directly from the GitHub website, and integrates quite well with its [GitHub repository][3]. So a way to provide offline access to this documentation was required, and because the project build procedure is based on Python, a solution using this language was preferred.
+One of the goals of [Ardublockly][1], specially taking in consideration that it is based on web technologies, is to be deployable to offline systems without additional dependencies. For its documentation [GitHub Wikis][2] was chosen, as it is easy to use, can be viewed and edited directly from the GitHub website, and integrates quite well with its [GitHub repository][3]. So a way to provide offline access to this documentation was required, and because the project build procedure is based on Python, a solution using this language was preferred.
 
 [MkDocs][4] turned out to be a perfect fit for this purpose. MkDocs is a static site generator, based on Markdown files (GitHub Wiki's default format) and tailored specifically for documentation.
 

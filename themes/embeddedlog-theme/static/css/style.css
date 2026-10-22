@@ -5,13 +5,20 @@ body {
     line-height: 1.8 !important;
 }
 
+/* Also on html: body's container-type stops its background reaching the canvas */
+html,
 body {
     background-image: url("/images/theme/background_tile.png");
     background-attachment: fixed;
 }
 
+/* Stop the page's elastic bounce at its top and bottom edges. */
+html {
+    overscroll-behavior-y: none;
+}
+
 /* Reduce font size on lower resolutions */
-@media (max-width: 750px) {
+@media (max-width: 767px) {
     html, body {
         font-size: 16px !important;
         line-height: 1.6 !important;
@@ -121,6 +128,159 @@ a, a:hover {
 .summary img {
     max-width: 100%;
     height: auto;
+}
+
+/* Article listings: banner lead followed by three, two or one card per row. */
+.article-previews {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 24px;
+}
+
+.article-preview {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    border: 1px solid #dce4e8;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.article-preview-image {
+    display: block;
+    flex-shrink: 0;
+    height: 170px;
+    overflow: hidden;
+}
+
+.article-preview-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 32%;
+}
+
+.article-preview-copy {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    padding: 20px;
+}
+
+.article-preview h2 {
+    margin: 0 0 11px;
+    font-size: 24px;
+    line-height: 1.25;
+}
+
+.article-preview .summary {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    font-size: 16px;
+    line-height: 1.65;
+}
+
+.article-preview .article-read-more {
+    align-self: flex-start;
+    margin-top: auto;
+}
+
+.article-preview-lead {
+    grid-column: 1 / -1;
+    background: #f4f7f8;
+}
+
+.article-preview-lead .article-preview-image {
+    height: 210px;
+}
+
+.article-preview-lead .article-preview-copy {
+    padding: 22px 24px;
+}
+
+.article-preview-lead h2 {
+    font-size: 30px;
+}
+
+.article-preview-lead .summary {
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+@media (max-width: 1199px) {
+    .article-previews {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 767px) {
+    .article-previews {
+        grid-template-columns: minmax(0, 1fr);
+    }
+    .article-preview-lead .article-preview-image {
+        height: 150px;
+    }
+    .article-preview-lead .article-preview-copy {
+        padding: 20px;
+    }
+    .article-preview-lead h2 {
+        font-size: 28px;
+    }
+    .article-preview-lead .summary {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+}
+
+/* Article preview links: a quiet editorial action below each summary. */
+.article-read-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 40px;
+    padding: 7px 0;
+    color: #2c3e50;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 22px;
+}
+
+.article-read-more,
+.article-read-more:hover,
+.article-read-more:focus {
+    text-decoration: none;
+}
+
+.article-read-more-label {
+    text-decoration: underline;
+    text-decoration-color: #aab7bf;
+    text-underline-offset: 4px;
+}
+
+.article-read-more:hover .article-read-more-label {
+    text-decoration-color: #2c3e50;
+}
+
+.article-read-more-arrow {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.article-read-more:focus-visible {
+    outline: 2px solid #2c3e50;
+    outline-offset: 4px;
+}
+
+@media (max-width: 767px) {
+    .article-read-more {
+        min-height: 44px;
+        font-size: 14px;
+    }
 }
 
 
@@ -277,7 +437,7 @@ ul.nav .dropdown-menu li.active a {
 }
 
 /* Solutions for mobile and small screens  */
-@media (max-width: 750px) {
+@media (max-width: 767px) {
     #banner {
         margin: 0;
     }
@@ -305,17 +465,17 @@ ul.nav .dropdown-menu li.active a {
     text-align: center;
     height: 360px;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
     .carousel-base {
         height: 360px;
     }
 }
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .carousel-base {
         height: 320px;
     }
 }
-@media (max-width: 750px) {
+@media (max-width: 767px) {
     .carousel-base {
         height: 240px;
     }
@@ -363,13 +523,13 @@ ul.nav .dropdown-menu li.active a {
     padding-right:12px;
     font-size: 1.4rem;
 }
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
     .carousel-content {
     }
     .carousel-content h2 {
     }
 }
-@media (max-width: 992px) {
+@media (max-width: 991px) {
     .carousel-content {
         margin: 0px 15%;
         line-height: 1.5;
@@ -382,7 +542,7 @@ ul.nav .dropdown-menu li.active a {
         padding-bottom: 12px;
     }
 }
-@media (max-width: 750px) {
+@media (max-width: 767px) {
     .carousel-content {
         margin: 0px 10%;
         line-height: 1.2;
@@ -522,6 +682,10 @@ ul.nav .dropdown-menu li.active a {
     word-break: normal;
 }
 
+#aboutme .aboutme-container {
+    display: flex;
+}
+
 .aboutme-container {
     border: 2px #fff solid;
     border-radius: 12px;
@@ -560,8 +724,56 @@ ul.nav .dropdown-menu li.active a {
 #aboutme-social-box {
     margin-left: 0px;
     padding-left: 0px;
-    display: block;
+    padding-right: 36px;
+    display: flex;
+    flex-direction: column;
 }
+
+#aboutme-social-box .list-group {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-self: flex-end;
+    justify-content: center;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+#aboutme-social-box .list-group-item {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+#aboutme .profile-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+#aboutme .profile-link:hover .profile-link-label,
+#aboutme .profile-link:focus .profile-link-label {
+    text-decoration: underline;
+}
+
+#aboutme .profile-link .fab {
+    width: 21px;
+    height: 21px;
+    font-size: 24px;
+    line-height: 21px;
+    text-align: center;
+}
+
+.aboutme-social-icon {
+    width: 21px;
+    height: 21px;
+}
+
 @media (max-width: 767px) {
     #aboutme-social-box {
         display: none;
@@ -573,18 +785,41 @@ ul.nav .dropdown-menu li.active a {
     display: none;
     margin-bottom: 24px;
 }
-@media (max-width: 767px) {
-    #aboutme-social-box-alt {
-        display: block;
-    }
-}
-
 #aboutme .list-group, #aboutme .list-group-item {
     background-color: transparent;
 }
+/* Compact spacing keeps all three profile links on one row at 300px. */
 @media (max-width: 767px) {
-    #aboutme .list-group, #aboutme .list-group-item {
-        padding: 6px 2px;
+    #aboutme-social-box-alt {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        padding: 8px;
+        font-size: 14px;
+    }
+    #aboutme-social-box-alt .list-group-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin: 0;
+        padding: 6px 0;
+    }
+    #aboutme-social-box-alt .list-group-item + .list-group-item::before {
+        content: '/';
+        padding: 0;
+    }
+    #aboutme-social-box-alt .profile-link {
+        gap: 4px;
+    }
+    #aboutme-social-box-alt .profile-link .fab,
+    #aboutme-social-box-alt .aboutme-social-icon {
+        width: 18px;
+        height: 18px;
+    }
+    #aboutme-social-box-alt .profile-link .fab {
+        font-size: 20px;
+        line-height: 18px;
     }
 }
 
@@ -651,7 +886,7 @@ ul.nav .dropdown-menu li.active a {
         flex-direction: column;
     }
 }
-@media (max-width: 750px) {
+@media (max-width: 767px) {
     .breadcrump-labels .post-info-data:after {
         content: '';
         display: block;
@@ -674,6 +909,11 @@ ul.nav .dropdown-menu li.active a {
 
 #article-title-breadcrumps .breadcrumb {
     background: transparent;
+}
+
+#article-title-breadcrumps .breadcrump-labels {
+    display: flex;
+    align-items: center;
 }
 
 .article-metadata {
@@ -729,7 +969,7 @@ ul.nav .dropdown-menu li.active a {
     line-height: 1 !important;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .container_body,
     .container_footer {
         padding-left: 16px !important;
@@ -833,7 +1073,7 @@ ul.nav .dropdown-menu li.active a {
     align-items: center;
     gap: 9px;
     height: auto;
-    padding: 7px 14px;
+    padding: 6px 14px;
     font-size: 14px;
     line-height: 1.6;
 }
@@ -938,83 +1178,37 @@ ul.nav .dropdown-menu li.active a {
 /*******************/
 /* General Helpers */
 /*******************/
+/* Gives full-bleed images 100cqw: the page width without the scrollbar, unlike 100vw */
+body {
+    container-type: inline-size;
+}
+
 .full-width {
-    width: 100vw !important;
-    max-width: 100vw !important;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
+    width: 100cqw !important;
+    max-width: 100cqw !important;
+    margin-left: calc((100% - 100cqw) / 2);
+    margin-right: calc((100% - 100cqw) / 2);
     border: solid 10px #0a0a0a73;
 }
-@media (max-width: 767px) {
-    .full-width {
-        border-width: 6px;
+
+/* Goes full-bleed instead once the extra width no longer fits the page */
+.wider-than-parent {
+    --wider-width: min(100% + 150px, 100cqw);
+    width: var(--wider-width) !important;
+    max-width: var(--wider-width) !important;
+    margin-left: calc((100% - var(--wider-width)) / 2);
+    margin-right: calc((100% - var(--wider-width)) / 2);
+    border: solid 10px #0a0a0a80;
+}
+@media (max-width: 1199px) {
+    .wider-than-parent {
+        --wider-width: min(100% + 120px, 100cqw);
     }
 }
 
-.wider-than-parent {
-    width: calc(100% + 150px) !important;
-    max-width: calc(100% + 150px) !important;
-    margin-left: -75px;
-    margin-right: -75px;
-    border: solid 10px #0a0a0a80;
-}
-@media (max-width: 1250px) {
-    /* In-between state before content width decreases and */
-    /* this image element no longer fits in the viewport */
+@media (max-width: 767px) {
+    .full-width,
     .wider-than-parent {
-        width: 100vw !important;
-        max-width: 100vw !important;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-}
-@media (max-width: 1200px) {
-    .wider-than-parent {
-        width: calc(100% + 120px) !important;
-        max-width: calc(100% + 120px) !important;
-        position: static;
-        margin-left: -60px;
-        margin-right: -60px;
-    }
-}
-@media (max-width: 1023px) {
-    /* In-between state before content width decreases and */
-    /* this image element no longer fits in the viewport */
-    .wider-than-parent {
-        width: 100vw !important;
-        max-width: 100vw !important;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-    }
-}
-@media (max-width: 991px) {
-    .wider-than-parent {
-        width: calc(100% + 120px) !important;
-        max-width: calc(100% + 120px) !important;
-        position: static;
-        margin-left: -60px;
-        margin-right: -60px;
-    }
-}
-@media (max-width: 805px) {
-    /* A bit before the content width change as it stops fitting the viewport */
-    .wider-than-parent {
-        width: 100vw !important;
-        max-width: 100vw !important;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
         border-width: 6px;
     }
 }

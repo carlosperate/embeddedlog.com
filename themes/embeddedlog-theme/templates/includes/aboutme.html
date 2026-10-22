@@ -1,3 +1,21 @@
+{# Share profile links between desktop and phone; the bundled font lacks Bluesky. #}
+{% macro profile_link(name, link) -%}
+    {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
+    <a class="profile-link" href="{{ link }}" target="_blank" rel="noopener noreferrer">
+        {% if name_sanitized == 'bluesky' %}
+            {# Official butterfly cut out of a square to match the other profile badges.
+               Source: https://github.com/bluesky-social/bsky-docs/blob/main/static/img/logo.svg #}
+            <svg class="aboutme-social-icon" viewBox="-72 -92 504 504" fill="currentColor" aria-hidden="true" focusable="false">
+                <path fill-rule="evenodd" d="M-18 -92H378A54 54 0 0 1 432 -38V358A54 54 0 0 1 378 412H-18A54 54 0 0 1 -72 358V-38A54 54 0 0 1 -18 -92Z M180 141.964C163.699 110.262 119.308 51.1817 78.0347 22.044C38.4971 -5.86834 23.414 -1.03207 13.526 3.43594C2.08093 8.60755 0 26.1785 0 36.5164C0 46.8542 5.66748 121.272 9.36416 133.694C21.5786 174.738 65.0603 188.607 105.104 184.156C107.151 183.852 109.227 183.572 111.329 183.312C109.267 183.642 107.19 183.924 105.104 184.156C46.4204 192.847 -5.69621 214.233 62.6582 290.33C137.848 368.18 165.705 273.637 180 225.702C194.295 273.637 210.76 364.771 295.995 290.33C360 225.702 313.58 192.85 254.896 184.158C252.81 183.926 250.733 183.645 248.671 183.315C250.773 183.574 252.849 183.855 254.896 184.158C294.94 188.61 338.421 174.74 350.636 133.697C354.333 121.275 360 46.8568 360 36.519C360 26.1811 357.919 8.61012 346.474 3.43851C336.586 -1.02949 321.503 -5.86576 281.965 22.0466C240.692 51.1843 196.301 110.262 180 141.964Z"/>
+            </svg>
+        {% else %}
+            {% set icon_name = name_sanitized if name_sanitized in ['flickr', 'spotify', 'stack-overflow', 'medium', 'weibo', 'linkedin'] else name_sanitized ~ '-square' %}
+            <i class="fab fa-{{ icon_name }}" aria-hidden="true"></i>
+        {% endif %}
+        <span class="profile-link-label">{{ name }}</span>
+    </a>
+{%- endmacro %}
+
 <div id="aboutme">
     <section class="well well-sm aboutme-container">
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10" id="aboutme-main-box">
@@ -16,31 +34,17 @@
         </div>
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2" id="aboutme-social-box">
             {% if SOCIAL %}
-                <li class="list-group-item">
-                  <ul class="list-group" id="social">
+                <ul class="list-group" id="social">
                     {% for name, link in SOCIAL %}
-                        {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
-                        {% if name_sanitized in ['flickr', 'spotify', 'stack-overflow', 'medium', 'weibo'] %}
-                            {% set iconattributes = '"fab fa-' ~ name_sanitized ~ ' fa-lg"' %}
-                        {% else %}
-                            {% set iconattributes = '"fab fa-' ~ name_sanitized ~ '-square fa-lg"' %}
-                        {% endif %}
-                        <li class="list-group-item"><a href="{{ link }}" target="_blank"><i class={{ iconattributes }}></i> {{ name }}</a></li>
+                        <li class="list-group-item">{{ profile_link(name, link) }}</li>
                     {% endfor %}
-                  </ul>
-                </li>
+                </ul>
             {% endif %}
         </div>
     </section>
     <ol class="breadcrumb" id="aboutme-social-box-alt">
         {% for name, link in SOCIAL %}
-            {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
-            {% if name_sanitized in ['flickr', 'spotify', 'stack-overflow', 'medium', 'weibo'] %}
-                {% set iconattributes = '"fab fa-' ~ name_sanitized ~ ' fa-lg"' %}
-            {% else %}
-                {% set iconattributes = '"fab fa-' ~ name_sanitized ~ '-square fa-lg"' %}
-            {% endif %}
-            <li class="list-group-item"><a href="{{ link }}" target="_blank"><i class={{ iconattributes }}></i> {{ name }}</a></li>
+            <li class="list-group-item">{{ profile_link(name, link) }}</li>
         {% endfor %}
     </ol>
 </div>

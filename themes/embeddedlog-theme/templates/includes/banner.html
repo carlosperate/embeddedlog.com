@@ -24,7 +24,7 @@
                 rgba(0, 0, 0, 0.5),
                 rgba(0, 0, 0, 0)
             ),
-        url("{{ SITEURL}}/images/banners/default_banner.jpg");
+        url("{{ SITEURL}}/images/banners/lightupalarm_banner.jpg");
     }
     {% endif %}
     {% if not page or (page and page.carousel == "2") %}
@@ -68,7 +68,7 @@
             </div>
             {% endif %}
             {% if not page or (page and page.carousel == "1") %}
-            <div class="item carousel-base carousel-one">
+            <div class="item{% if page %} active{% endif %} carousel-base carousel-one">
                 <div class="carousel-content">
                     <div class="table_div">
                         <div class="table_row_text">
@@ -85,7 +85,7 @@
             </div>
             {% endif %}
             {% if not page or (page and page.carousel == "2") %}
-            <div class="item carousel-base carousel-two">
+            <div class="item{% if page %} active{% endif %} carousel-base carousel-two">
                 <div class="carousel-content">
                     <div class="table_div">
                         <div class="table_row_text">

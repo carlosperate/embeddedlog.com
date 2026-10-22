@@ -1,21 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-    {% if articles %}
-        {% for article in (articles_page.object_list if articles_page else articles) %}
-            <article>
-                <h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
-                {% if DISPLAY_ARTICLE_INFO_ON_INDEX %}
-                    <div class="well well-sm">
-                        {% include "includes/article_info.html" %}
+    {% set preview_articles = articles_page.object_list if articles_page else articles %}
+    {% if preview_articles %}
+        <div class="article-previews">
+            {% for article in preview_articles %}
+                {% set preview_image = 'images/banners/' ~ article.banner_image if article.banner_image else BANNER %}
+                <article class="article-preview{% if loop.first %} article-preview-lead{% endif %}">
+                    <a class="article-preview-image" href="{{ SITEURL }}/{{ article.url }}" aria-hidden="true" tabindex="-1">
+                        <img src="{{ SITEURL }}/{{ preview_image }}" alt="" loading="{{ 'eager' if loop.first else 'lazy' }}" decoding="async">
+                    </a>
+                    <div class="article-preview-copy">
+                        <h2><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></h2>
+                        {% if DISPLAY_ARTICLE_INFO_ON_INDEX %}
+                            <div class="well well-sm">
+                                {% include "includes/article_info.html" %}
+                            </div>
+                        {% endif %}
+                        <div class="summary">{{ article.summary }}
+                            {% include 'includes/comment_count.html' %}
+                            <a class="article-read-more" href="{{ SITEURL }}/{{ article.url }}" aria-label="Continue reading: {{ article.title|striptags|e }}">
+                                <span class="article-read-more-label">Continue reading</span>
+                                <span class="article-read-more-arrow" aria-hidden="true">→</span>
+                            </a>
+                        </div>
                     </div>
-                {% endif %}
-                <div class="summary">{{ article.summary }}
-                    {% include 'includes/comment_count.html' %}
-                    <a class="btn btn-default btn-xs" href="{{ SITEURL }}/{{ article.url }}">more ...</a>
-                </div>
-            </article>
-            <hr/>
-        {% endfor %}
+                </article>
+            {% endfor %}
+        </div>
     {% endif %}
 
     {% include 'includes/pagination.html' %}

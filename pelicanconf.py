@@ -78,9 +78,9 @@ DISPLAY_RECENT_POSTS_ON_SIDEBAR = True
 DISPLAY_TAGS_ON_SIDEBAR = True
 DISPLAY_TWITTER_TIMELINE_ON_SIDEBAR = True
 TAG_CLOUD_MAX_ITEMS = 10
-SOCIAL = (('github', 'https://github.com/carlosperate'),
-          ('twitter', 'https://twitter.com/carlosperate'),
-          ('medium', 'https://medium.com/@carlosperate'),)
+SOCIAL = (('GitHub', 'https://github.com/carlosperate'),
+          ('Bluesky', 'https://bsky.app/profile/carlosperate.bsky.social'),
+          ('LinkedIn', 'https://www.linkedin.com/in/carlos-pa/'),)
 LINKS = (('The Amp Hour podcast', 'http://www.theamphour.com'),
          ('Embedded.fm podcast', 'http://embedded.fm'),)
 
