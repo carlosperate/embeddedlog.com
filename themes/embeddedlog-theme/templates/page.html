@@ -65,26 +65,3 @@
         </div>
     </section>
 {% endblock %}
-
-{% block scripts %}
-    {% if page.carousel %}
-    <!-- Banner carousel control -->
-    <script type="text/javascript">
-        /** Stops the carousel and sets it to a specific project */
-        window.addEventListener("DOMContentLoaded", function() {
-            // In the templates for the banner, pages that have a carousel show
-            $(".carousel").carousel(0);
-            $(".carousel").carousel('pause');
-            $("#carousel-control-prev").css("visibility", "hidden");
-            $("#carousel-control-next").css("visibility", "hidden");
-            $("#carousel-indicators").css("display", "none");
-            $(".carousel-indicators-placeholder").css("display", "none");
-        });
-        window.addEventListener("load", function() {
-            $(".carousel").carousel('pause');
-            $(".carousel").carousel(0);
-        });
-    </script>
-    <!-- End Banner carousel control -->
-    {% endif %}
-{% endblock %}

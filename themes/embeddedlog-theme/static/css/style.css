@@ -5,16 +5,25 @@ body {
     line-height: 1.8 !important;
 }
 
-/* Also on html: body's container-type stops its background reaching the canvas */
-html,
-body {
+/* On html: body's container-type stops its background reaching the canvas */
+html {
     background-image: url("/images/theme/background_tile.png");
     background-attachment: fixed;
+}
+
+/* Shows html's tile; a second fixed copy here costs Chrome a document-sized layer */
+body {
+    background-color: transparent;
 }
 
 /* Stop the page's elastic bounce at its top and bottom edges. */
 html {
     overscroll-behavior-y: none;
+}
+
+/* Flatly green instead of the browser's default blue */
+::selection {
+    background: rgba(24, 188, 156, 0.3);
 }
 
 /* Reduce font size on lower resolutions */
@@ -53,10 +62,27 @@ header h1 {
     padding-top: 64px;
     margin-top: -32px; /* 32px original -64px anchor */
 }
-.entry-content h4, h5 {
+.entry-content h4, .entry-content h5 {
     padding-top: 64px;
     margin-top: -40px; /* 24px original -64px anchor */
     font-weight: bold;
+}
+/* Phones: keep headings below the 28px article title */
+@media (max-width: 767px) {
+    .entry-content h2,
+    .entry-content h3,
+    .entry-content h4 {
+        line-height: 1.25;
+    }
+    .entry-content h2 {
+        font-size: 24px;
+    }
+    .entry-content h3 {
+        font-size: 21px;
+    }
+    .entry-content h4 {
+        font-size: 18px;
+    }
 }
 
 hr {
@@ -113,6 +139,25 @@ a, a:hover {
 .entry-content a:hover {
     text-decoration: none;
     border-bottom: 1px solid;
+}
+
+/* Site green instead of Bootstrap's pink; Bootstrap's pre code rule still resets code blocks */
+code {
+    padding: 2px 6px;
+    color: #0b6e5a;
+    background-color: #e3f4ef;
+}
+
+/* The summary opens the article in larger regular text, not a bold paragraph */
+.article-standfirst {
+    margin-bottom: 24px;
+    font-size: 21px;
+    line-height: 1.6;
+}
+@media (max-width: 767px) {
+    .article-standfirst {
+        font-size: 19px;
+    }
 }
 
 .entry-content img {
@@ -206,9 +251,10 @@ a, a:hover {
     font-size: 30px;
 }
 
+/* Back to the body text size, which drops on phones */
 .article-preview-lead .summary {
-    font-size: 17px;
-    line-height: 1.8;
+    font-size: inherit;
+    line-height: inherit;
 }
 
 @media (max-width: 1199px) {
@@ -230,10 +276,6 @@ a, a:hover {
     .article-preview-lead h2 {
         font-size: 28px;
     }
-    .article-preview-lead .summary {
-        font-size: 16px;
-        line-height: 1.6;
-    }
 }
 
 /* Article preview links: a quiet editorial action below each summary. */
@@ -243,7 +285,6 @@ a, a:hover {
     gap: 10px;
     min-height: 40px;
     padding: 7px 0;
-    color: #2c3e50;
     font-size: 15px;
     font-weight: 700;
     line-height: 22px;
@@ -465,11 +506,6 @@ ul.nav .dropdown-menu li.active a {
     text-align: center;
     height: 360px;
 }
-@media (max-width: 1199px) {
-    .carousel-base {
-        height: 360px;
-    }
-}
 @media (max-width: 991px) {
     .carousel-base {
         height: 320px;
@@ -518,16 +554,37 @@ ul.nav .dropdown-menu li.active a {
     font-size: 1.0rem;
     line-height: 1.4;
 }
+/* Light buttons stand out on the banner photos: solid primary, translucent secondary */
+.carousel-content .btn-primary,
+.carousel-content .btn-default {
+    --banner-light: color-mix(in srgb, #2c3e50 10%, white);
+    border-color: var(--banner-light);
+    transition: color 0.15s ease-out, background-color 0.15s ease-out, border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+.carousel-content .btn-primary {
+    color: #2c3e50;
+    background-color: var(--banner-light);
+    text-shadow: none;
+}
+.carousel-content .btn-default {
+    color: #fff;
+    background-color: rgba(16, 26, 36, 0.65);
+}
+/* Both brighten to white with a soft glow, so the hover reads as an invitation */
+.carousel-content .btn-primary:hover,
+.carousel-content .btn-primary:focus-visible,
+.carousel-content .btn-default:hover,
+.carousel-content .btn-default:focus-visible {
+    color: #2c3e50;
+    border-color: #fff;
+    background-color: #fff;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 0 18px rgba(255, 255, 255, 0.35);
+    text-shadow: none;
+}
 .carousel-content .fa,
 .carousel-content .fab {
     padding-right:12px;
     font-size: 1.4rem;
-}
-@media (max-width: 1199px) {
-    .carousel-content {
-    }
-    .carousel-content h2 {
-    }
 }
 @media (max-width: 991px) {
     .carousel-content {
@@ -538,8 +595,6 @@ ul.nav .dropdown-menu li.active a {
     .carousel-content h2 {
         font-size: 2.8rem;
         line-height: 1.5;
-        padding-top: 36px;
-        padding-bottom: 12px;
     }
 }
 @media (max-width: 767px) {
@@ -737,7 +792,6 @@ ul.nav .dropdown-menu li.active a {
     justify-content: center;
     gap: 8px;
     margin: 0;
-    padding: 0;
 }
 
 #aboutme-social-box .list-group-item {
@@ -752,7 +806,6 @@ ul.nav .dropdown-menu li.active a {
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    vertical-align: middle;
     text-decoration: none;
 }
 
@@ -761,23 +814,16 @@ ul.nav .dropdown-menu li.active a {
     text-decoration: underline;
 }
 
-#aboutme .profile-link .fab {
-    width: 21px;
-    height: 21px;
-    font-size: 24px;
-    line-height: 21px;
-    text-align: center;
-}
-
+#aboutme .profile-link .fab,
 .aboutme-social-icon {
     width: 21px;
     height: 21px;
 }
 
-@media (max-width: 767px) {
-    #aboutme-social-box {
-        display: none;
-    }
+#aboutme .profile-link .fab {
+    font-size: 24px;
+    line-height: 21px;
+    text-align: center;
 }
 
 #aboutme-social-box-alt {
@@ -790,6 +836,9 @@ ul.nav .dropdown-menu li.active a {
 }
 /* Compact spacing keeps all three profile links on one row at 300px. */
 @media (max-width: 767px) {
+    #aboutme-social-box {
+        display: none;
+    }
     #aboutme-social-box-alt {
         display: flex;
         align-items: center;
@@ -853,6 +902,16 @@ ul.nav .dropdown-menu li.active a {
 }
 .container-blurry h1 {
     margin: 20px;
+    text-wrap: balance;
+    overflow-wrap: break-word;
+}
+/* At 39px, words like "documentation" overflow the card below 350px */
+@media (max-width: 767px) {
+    .container-blurry h1 {
+        margin: 16px 12px;
+        font-size: 28px;
+        line-height: 1.2;
+    }
 }
 .aboutme-container .new-breadcrump {
     margin: 0;
@@ -881,16 +940,8 @@ ul.nav .dropdown-menu li.active a {
     .new-breadcrump {
         flex-direction: column;
     }
-    .breadcrump-labels label {
-        display: flex;
-        flex-direction: column;
-    }
 }
 @media (max-width: 767px) {
-    .breadcrump-labels .post-info-data:after {
-        content: '';
-        display: block;
-    }
     .breadcrump-labels .label {
         margin-left: 0px;
     }
@@ -898,6 +949,11 @@ ul.nav .dropdown-menu li.active a {
 .new-breadcrump .breadcrumb {
     margin: 0px;
     padding: 0px;
+}
+
+/* Same navy as the linked items; Flatly's #95a5a6 is only 2.2:1 on the bar */
+.breadcrumb > .active {
+    color: #2c3e50;
 }
 
 /* Keep article metadata secondary to the title, with each date on one line. */
@@ -1094,19 +1150,48 @@ ul.nav .dropdown-menu li.active a {
     line-height: 1;
 }
 
-/* Retain the chosen blue palette despite Shariff's new black X default. */
-.article-sharing .shariff .twitter a {
-    background-color: #55acee;
+/* Muted brand tints at rest, the full colour on hover. Twitter keeps its blue, not X's black. */
+.article-sharing .shariff .twitter {
+    --brand: #55acee;
+}
+.article-sharing .shariff .facebook {
+    --brand: #3b5998;
+}
+.article-sharing .shariff .linkedin {
+    --brand: #0077b5;
+}
+.article-sharing .shariff .reddit {
+    --brand: #ff4500;
+}
+.article-sharing .shariff .whatsapp {
+    --brand: #5cbe4a;
+}
+.article-copy-link {
+    --brand: #2c3e50;
 }
 
-.article-sharing .shariff .twitter a:hover {
-    background-color: #32bbf5;
+.article-sharing .shariff li a,
+.article-copy-link {
+    color: color-mix(in srgb, var(--brand) 60%, black);
+    background-color: color-mix(in srgb, var(--brand) 16%, white);
+}
+
+.article-sharing .shariff li a:hover,
+.article-copy-link:hover {
+    color: #fff;
+    background-color: var(--brand);
+}
+
+/* Reddit's orange still shouts as a tint, so its icon is dimmed further */
+.article-sharing .shariff .reddit a .fab {
+    color: color-mix(in srgb, var(--brand) 45%, #526574);
+}
+.article-sharing .shariff .reddit a:hover .fab {
+    color: inherit;
 }
 
 .article-copy-link {
     font-family: inherit;
-    color: #fff;
-    background: #2c3e50;
     border: 0;
     border-radius: 5px;
     cursor: pointer;
@@ -1114,10 +1199,6 @@ ul.nav .dropdown-menu li.active a {
 
 .article-copy-link[hidden] {
     display: none;
-}
-
-.article-copy-link:hover {
-    background: #405970;
 }
 
 .article-copy-link.is-copied .fa::before {
@@ -1183,21 +1264,22 @@ body {
     container-type: inline-size;
 }
 
+.full-width,
+.wider-than-parent {
+    width: var(--wider-width) !important;
+    max-width: var(--wider-width) !important;
+    margin-left: calc((100% - var(--wider-width)) / 2);
+    margin-right: calc((100% - var(--wider-width)) / 2);
+}
+
 .full-width {
-    width: 100cqw !important;
-    max-width: 100cqw !important;
-    margin-left: calc((100% - 100cqw) / 2);
-    margin-right: calc((100% - 100cqw) / 2);
+    --wider-width: 100cqw;
     border: solid 10px #0a0a0a73;
 }
 
 /* Goes full-bleed instead once the extra width no longer fits the page */
 .wider-than-parent {
     --wider-width: min(100% + 150px, 100cqw);
-    width: var(--wider-width) !important;
-    max-width: var(--wider-width) !important;
-    margin-left: calc((100% - var(--wider-width)) / 2);
-    margin-right: calc((100% - var(--wider-width)) / 2);
     border: solid 10px #0a0a0a80;
 }
 @media (max-width: 1199px) {

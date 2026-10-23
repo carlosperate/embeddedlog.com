@@ -1,56 +1,44 @@
+{% set banner_shade = "linear-gradient(rgba(44, 62, 80, 0.5), rgba(44, 62, 80, 0.1))" %}
 <style>
     #banner{
-        background-image:
-            linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0)
-            ),
-        url("{{ SITEURL}}/{{ BANNER }}");
+        background-image: {{ banner_shade }},
+            url("{{ SITEURL}}/{{ BANNER }}");
     }
-    {% if not page or (page and page.carousel == "0") %}
+    {% if not page or page.carousel == "0" %}
     .carousel-zero {
-        background-image:
-            linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0)
-            ),
-        url("{{ SITEURL}}/images/banners/ardublockly_banner.png");
+        background-image: {{ banner_shade }},
+            url("{{ SITEURL}}/images/banners/ardublockly_banner.png");
     }
     {% endif %}
-    {% if not page or (page and page.carousel == "1") %}
+    {% if not page or page.carousel == "1" %}
     .carousel-one {
-        background-image:
-            linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0)
-            ),
-        url("{{ SITEURL}}/images/banners/lightupalarm_banner.jpg");
+        background-image: {{ banner_shade }},
+            url("{{ SITEURL}}/images/banners/lightupalarm_banner.jpg");
     }
     {% endif %}
-    {% if not page or (page and page.carousel == "2") %}
+    {% if not page or page.carousel == "2" %}
     .carousel-two {
-        background-image:
-            linear-gradient(
-                rgba(0, 0, 0, 0.5),
-                rgba(0, 0, 0, 0)
-            ),
-        url("{{ SITEURL}}/images/banners/quickhue_banner.png");
+        background-image: {{ banner_shade }},
+            url("{{ SITEURL}}/images/banners/quickhue_banner.png");
     }
     {% endif %}
 </style>
 
+{# Pages show one slide at most, so only the front page gets indicators and controls. #}
 <div id="banner">
     <div id="carousel-projects" class="carousel slide" data-ride="carousel">
+        {% if not page %}
         <!-- Indicators -->
         <ol class="carousel-indicators" id="carousel-indicators">
             <li data-target="#carousel-projects" data-slide-to="0" class="active"></li>
             <li data-target="#carousel-projects" data-slide-to="1"></li>
             <li data-target="#carousel-projects" data-slide-to="2"></li>
         </ol>
+        {% endif %}
 
         <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
-            {% if not page or (page and page.carousel == "0") %}
+            {% if not page or page.carousel == "0" %}
             <div class="item active carousel-base carousel-zero">
                 <div class="carousel-content">
                     <div class="table_div">
@@ -60,14 +48,16 @@
                         </div>
                         <div class="table_row_buttons">
                             <a class="btn btn-primary" href="//ardublockly.embeddedlog.com" target="_blank"><span class="fa fa-info-circle"></span>Find out more</a>
-                            <a class="btn btn-primary" href="https://github.com/carlosperate/ardublockly" target="_blank"><span class="fab fa-github"></span> View on GitHub</a>
+                            <a class="btn btn-default" href="https://github.com/carlosperate/ardublockly" target="_blank"><span class="fab fa-github"></span> View on GitHub</a>
                         </div>
+                        {% if not page %}
                         <div class="table_row_text carousel-indicators-placeholder">&nbsp;</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
             {% endif %}
-            {% if not page or (page and page.carousel == "1") %}
+            {% if not page or page.carousel == "1" %}
             <div class="item{% if page %} active{% endif %} carousel-base carousel-one">
                 <div class="carousel-content">
                     <div class="table_div">
@@ -77,14 +67,16 @@
                         </div>
                         <div class="table_row_buttons">
                             <a class="btn btn-primary" href="//lightupalarm.embeddedlog.com" target="_blank"><span class="fa fa-info-circle"></span>Find out more</a>
-                            <a class="btn btn-primary" href="https://github.com/carlosperate/LightUpPi-Alarm" target="_blank"><span class="fab fa-github"></span> View on GitHub</a>
+                            <a class="btn btn-default" href="https://github.com/carlosperate/LightUpPi-Alarm" target="_blank"><span class="fab fa-github"></span> View on GitHub</a>
                         </div>
+                        {% if not page %}
                         <div class="table_row_text carousel-indicators-placeholder">&nbsp;</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
             {% endif %}
-            {% if not page or (page and page.carousel == "2") %}
+            {% if not page or page.carousel == "2" %}
             <div class="item{% if page %} active{% endif %} carousel-base carousel-two">
                 <div class="carousel-content">
                     <div class="table_div">
@@ -94,15 +86,18 @@
                         </div>
                         <div class="table_row_buttons">
                             <a class="btn btn-primary" href="//quickhue.embeddedlog.com"><span class="fa fa-info-circle"></span>Find out more</a>
-                            <a class="btn btn-primary" href="https://github.com/carlosperate/PebbleQuickHue" target="_blank"><span class="fab fa-github"></span> View on GitHub</a>
+                            <a class="btn btn-default" href="https://github.com/carlosperate/PebbleQuickHue" target="_blank"><span class="fab fa-github"></span> View on GitHub</a>
                         </div>
+                        {% if not page %}
                         <div class="table_row_text carousel-indicators-placeholder">&nbsp;</div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
             {% endif %}
         </div>
 
+        {% if not page %}
         <!-- Controls -->
         <a class="left carousel-control" href="#carousel-projects" role="button" data-slide="prev" id="carousel-control-prev">
             <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -112,5 +107,6 @@
             <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
             <span class="sr-only">Next</span>
         </a>
+        {% endif %}
     </div>
 </div>
