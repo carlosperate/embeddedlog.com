@@ -21,9 +21,9 @@ html {
     overscroll-behavior-y: none;
 }
 
-/* Flatly green instead of the browser's default blue */
+/* Light copper instead of the browser's default blue; still visible on the dark code blocks */
 ::selection {
-    background: rgba(24, 188, 156, 0.3);
+    background: rgba(235, 160, 122, 0.3);
 }
 
 /* Reduce font size on lower resolutions */
@@ -127,8 +127,12 @@ hr {
     font-size: 6pt;
 }
 
-a, a:hover {
+a, a:hover, a:focus {
     color: inherit;
+}
+
+a:hover, a:focus {
+    text-decoration-color: #a3451c;
 }
 
 .entry-content a {
@@ -138,14 +142,14 @@ a, a:hover {
 
 .entry-content a:hover {
     text-decoration: none;
-    border-bottom: 1px solid;
+    border-bottom: 2px solid #a3451c;
 }
 
-/* Site green instead of Bootstrap's pink; Bootstrap's pre code rule still resets code blocks */
+/* Copper instead of Bootstrap's pink; Bootstrap's pre code rule still resets code blocks */
 code {
     padding: 2px 6px;
-    color: #0b6e5a;
-    background-color: #e3f4ef;
+    color: #a3451c;
+    background-color: #f2f5f5;
 }
 
 /* The summary opens the article in larger regular text, not a bold paragraph */
@@ -302,8 +306,9 @@ code {
     text-underline-offset: 4px;
 }
 
-.article-read-more:hover .article-read-more-label {
-    text-decoration-color: #2c3e50;
+.article-read-more:hover .article-read-more-label,
+.article-read-more:focus .article-read-more-label {
+    text-decoration-color: #a3451c;
 }
 
 .article-read-more-arrow {
@@ -400,6 +405,41 @@ figure.floatcenter, .align-center {
     -webkit-box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.4);
     box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.4);
+}
+
+/* Copper instead of Flatly's green */
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+    color: #eba07a;
+}
+
+/* Mark the current top-level page without changing active project dropdown items */
+.navbar-default .navbar-nav > li.active > a,
+.navbar-default .navbar-nav > li.active > a:focus {
+    color: #fff;
+    background-color: transparent;
+    box-shadow: inset 0 -3px 0 #eba07a;
+}
+
+.navbar-default .navbar-nav > li.active > a:hover {
+    color: #eba07a;
+    background-color: transparent;
+}
+
+/* Like Flatly, only the phone menu colours dropdown items; desktop ones go white on navy */
+@media (max-width: 767px) {
+    /* A left bar follows the phone menu's vertical list */
+    .navbar-default .navbar-nav > li.active > a,
+    .navbar-default .navbar-nav > li.active > a:focus {
+        box-shadow: inset 3px 0 0 #eba07a;
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #eba07a;
+    }
 }
 
 /* Navigation bar drop down */
@@ -520,6 +560,10 @@ ul.nav .dropdown-menu li.active a {
 .carousel-indicators {
     bottom: 50px;
 }
+.carousel-control:hover,
+.carousel-control:focus-visible {
+    color: #eba07a;
+}
 @media (max-width: 767px) {
     .carousel-indicators {
         bottom: 24px;
@@ -570,16 +614,24 @@ ul.nav .dropdown-menu li.active a {
     color: #fff;
     background-color: rgba(16, 26, 36, 0.65);
 }
-/* Both brighten to white with a soft glow, so the hover reads as an invitation */
+/* Copper edges and glow connect the hover state to the site's link accents */
 .carousel-content .btn-primary:hover,
 .carousel-content .btn-primary:focus-visible,
 .carousel-content .btn-default:hover,
 .carousel-content .btn-default:focus-visible {
-    color: #2c3e50;
-    border-color: #fff;
-    background-color: #fff;
-    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4), 0 0 18px rgba(255, 255, 255, 0.35);
+    border-color: #eba07a;
+    box-shadow: 0 0 0 3px rgba(235, 160, 122, 0.25), 0 0 18px rgba(235, 160, 122, 0.3);
     text-shadow: none;
+}
+.carousel-content .btn-primary:hover,
+.carousel-content .btn-primary:focus-visible {
+    color: #2c3e50;
+    background-color: #fff;
+}
+.carousel-content .btn-default:hover,
+.carousel-content .btn-default:focus-visible {
+    color: #fff;
+    background-color: rgba(16, 26, 36, 0.65);
 }
 .carousel-content .fa,
 .carousel-content .fab {
@@ -812,6 +864,14 @@ ul.nav .dropdown-menu li.active a {
 #aboutme .profile-link:hover .profile-link-label,
 #aboutme .profile-link:focus .profile-link-label {
     text-decoration: underline;
+    text-decoration-color: #a3451c;
+}
+
+#aboutme .profile-link:hover .fab,
+#aboutme .profile-link:focus .fab,
+#aboutme .profile-link:hover .aboutme-social-icon,
+#aboutme .profile-link:focus .aboutme-social-icon {
+    color: #a3451c;
 }
 
 #aboutme .profile-link .fab,
@@ -1253,6 +1313,218 @@ ul.nav .dropdown-menu li.active a {
     .article-copy-link .fa {
         width: 18px;
         font-size: 18px;
+    }
+}
+
+/*************************************/
+/* Social cards (social_card plugin) */
+/*************************************/
+/* Fixed height so the image slot keeps the 1.91:1 shape the plugin fits images to */
+.social-card {
+    display: flex;
+    height: 140px;
+    margin: 24px 0;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 6px;
+    transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+}
+
+.entry-content a.social-card,
+.entry-content a.social-card:hover {
+    color: #2c3e50;
+    text-decoration: none;
+    border: 1px solid #dce4e8;
+}
+
+.entry-content a.social-card:hover {
+    border-color: #b9c7ce;
+    box-shadow: 0 3px 10px rgba(44, 62, 80, 0.1);
+}
+
+.social-card:focus-visible {
+    outline: 2px solid #2c3e50;
+    outline-offset: 3px;
+}
+
+/* Keep in sync with SLOT_RATIO in plugins/social_card/socialcard.py */
+.social-card-media {
+    position: relative;
+    display: flex;
+    flex: 0 0 268px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #eef2f3;
+    border-right: 1px solid #e3eaed;
+}
+
+/* The image's own colours, blurred, fill whatever the image leaves uncovered */
+.social-card .social-card-wash {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(24px) saturate(1.2);
+    transform: scale(1.4);
+    opacity: 0.7;
+}
+
+.social-card .social-card-image {
+    position: relative;
+    z-index: 1;
+    display: block;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-card:hover .social-card-image {
+    transform: scale(1.03);
+}
+
+.social-card .social-card-cover,
+.social-card .social-card-contain {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+}
+
+.social-card .social-card-contain {
+    object-fit: contain;
+    filter: drop-shadow(0 2px 10px rgba(20, 30, 40, 0.2));
+}
+
+/* Icons, logos and favicons sit on a white tile, visible over a wash of their own colour */
+.social-card .social-card-tile {
+    box-sizing: content-box;
+    width: auto;
+    height: auto;
+    max-width: 52px;
+    max-height: 52px;
+    padding: 12px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(20, 30, 40, 0.15);
+}
+
+.social-card-logo .social-card-tile {
+    max-width: 56%;
+    max-height: 36px;
+    padding: 14px 16px;
+}
+
+.social-card-none span.social-card-tile {
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    line-height: 32px;
+    text-align: center;
+    color: #526574;
+}
+
+/* Favicon fallback: 16px icons scale up to the placeholder's size, larger ones match icon cards */
+.social-card-none img.social-card-tile {
+    min-width: 32px;
+    min-height: 32px;
+}
+
+.social-card-content {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.social-card-body {
+    flex: 1;
+    min-height: 0;
+    padding: 14px 20px 12px;
+}
+
+/* Title and description share three lines, so a short title leaves two for the description.
+   Own font size and line height: the article's 19px/1.6 would make every line 30px tall. */
+.social-card-text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.social-card-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+.social-card:hover .social-card-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.social-card-desc {
+    font-size: 16px;
+    line-height: 1.5;
+    color: #526574;
+}
+
+.social-card-source {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 20px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #526574;
+    background: #f8fafb;
+    border-top: 1px solid #e3eaed;
+}
+
+.social-card .social-card-favicon {
+    flex: 0 0 auto;
+    width: 16px;
+    height: 16px;
+}
+
+.social-card-site {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Phones: the slot moves on top and shows every image whole */
+@media (max-width: 767px) {
+    .social-card {
+        flex-direction: column;
+        height: auto;
+    }
+    .social-card-media {
+        flex-basis: 160px;
+        border-right: 0;
+        border-bottom: 1px solid #e3eaed;
+    }
+    .social-card .social-card-cover {
+        object-fit: contain;
+        filter: drop-shadow(0 2px 10px rgba(20, 30, 40, 0.2));
+    }
+    .social-card-body {
+        padding: 12px 14px;
+    }
+    .social-card-title {
+        font-size: 17px;
+    }
+    .social-card-desc {
+        font-size: 15px;
+    }
+    .social-card-source {
+        padding: 8px 14px;
+        font-size: 13px;
     }
 }
 
