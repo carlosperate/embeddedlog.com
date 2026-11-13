@@ -7,9 +7,12 @@ name = "pypi"
 # Pelin and pelican optional plugins
 pelican = "~=4.0"
 markdown = "~=3.1"
-webpreview = "~=1.7"
+# social_card fetches pages and reads image sizes
+requests = "~=2.0"
+beautifulsoup4 = "~=4.0"
+pillow = ">=10.4"
 
 [dev-packages]
 
 [requires]
-python_version = "3.8"
+python_version = "3.13"

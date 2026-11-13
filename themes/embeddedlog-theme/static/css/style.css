@@ -1337,8 +1337,9 @@ ul.nav .dropdown-menu li.active a {
     border: 1px solid #dce4e8;
 }
 
-.entry-content a.social-card:hover {
-    border-color: #b9c7ce;
+.entry-content a.social-card:hover,
+.entry-content a.social-card:focus-visible {
+    border-color: #eba07a;
     box-shadow: 0 3px 10px rgba(44, 62, 80, 0.1);
 }
 
@@ -1462,8 +1463,11 @@ ul.nav .dropdown-menu li.active a {
     line-height: 1.4;
 }
 
-.social-card:hover .social-card-title {
+.social-card:hover .social-card-title,
+.social-card:focus-visible .social-card-title {
     text-decoration: underline;
+    text-decoration-color: #a3451c;
+    text-decoration-thickness: 2px;
     text-underline-offset: 3px;
 }
 
