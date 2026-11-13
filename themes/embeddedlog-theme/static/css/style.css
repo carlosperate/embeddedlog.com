@@ -397,14 +397,61 @@ figure.floatcenter, .align-center {
     padding: 0px;
 }
 
+/* Topic directory: monospace names, copper hashes and outlined counts. */
+#tags .panel {
+    border: 1px solid #d9dfe0;
+    border-radius: 2px;
+    box-shadow: none;
+}
+
+#tags .panel-heading {
+    background: #fff;
+    padding: 14px;
+}
+
+#tags .panel-title {
+    font-family: monospace;
+    font-size: 16px;
+}
+
+#tags .panel-title a {
+    display: block;
+}
+
+#tags .panel-title a::before {
+    content: "# ";
+    color: #a3451c;
+}
+
+#tags .badge {
+    background: transparent;
+    color: #526574;
+    border: 1px solid #d9dfe0;
+    border-radius: 2px;
+}
+
 /****************************/
 /* Bootstrap navbar updates */
 /****************************/
-/* Add shadow */
+/* Terminal signature: keep the technical cue confined to the wordmark. */
 .navbar {
-    -webkit-box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.4);
-    -moz-box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.4);
-    box-shadow: 0px 10px 10px -10px rgba(0, 0, 0, 0.4);
+    background: #243744;
+    box-shadow: none;
+}
+
+.navbar-brand {
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
+
+.navbar-brand::before {
+    content: ">_ ";
+    color: #eba07a;
+}
+
+.navbar-nav > li > a {
+    font-size: 15px;
 }
 
 /* Copper instead of Flatly's green */
@@ -559,6 +606,10 @@ ul.nav .dropdown-menu li.active a {
 
 .carousel-indicators {
     bottom: 50px;
+}
+.carousel-indicators li:hover {
+    border-color: #eba07a;
+    background-color: #eba07a;
 }
 .carousel-control:hover,
 .carousel-control:focus-visible {
@@ -1083,9 +1134,35 @@ ul.nav .dropdown-menu li.active a {
     background: #FFFFFF !important;
     padding: 16px 32px 0px 32px;
     line-height: 1 !important;
+    font-size: 14px;
+}
+
+/* The navy rule ties the footer to the header; utilities stack on phones. */
+footer hr {
+    border: 0;
+    border-top: 1px solid #243744;
+}
+
+footer .col-xs-9 {
+    width: auto;
+}
+
+footer .col-xs-3 {
+    width: auto;
+    float: right;
 }
 
 @media (max-width: 767px) {
+    footer .col-xs-3,
+    footer .col-xs-9 {
+        width: 100%;
+        float: none;
+    }
+
+    footer .pull-right {
+        float: none !important;
+    }
+
     .container_body,
     .container_footer {
         padding-left: 16px !important;
