@@ -1,0 +1,8 @@
+{% if GOATCOUNTER_HOST %}
+{# Prefix the host so one GoatCounter site can count the project subdomains too #}
+<script>window.goatcounter = { path: function(p) { return location.host + p } }</script>
+<script data-goatcounter="https://{{ GOATCOUNTER_HOST }}/count" async src="//{{ GOATCOUNTER_HOST }}/count.js"></script>
+{% endif %}
+{% if UMAMI_HOST %}
+<script defer src="https://{{ UMAMI_HOST }}/script.js" data-website-id="{{ UMAMI_WEBSITE_ID }}"></script>
+{% endif %}

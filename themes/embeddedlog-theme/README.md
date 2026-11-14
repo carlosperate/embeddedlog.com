@@ -64,8 +64,8 @@ This theme honors the following standard Pelican settings:
 	* `MENUITEMS`
 	* `LINKS` (Blogroll will be put in the sidebar instead of the head)
 * Analytics & Comments
-	* `GOOGLE_ANALYTICS` (classic tracking code)
-	* `GOOGLE_ANALYTICS_UNIVERSAL` and `GOOGLE_ANALYTICS_UNIVERSAL_PROPERTY` (Universal tracking code)
+	* `GOATCOUNTER_HOST` (GoatCounter instance, e.g. `angc.embeddedlog.com`)
+	* `UMAMI_HOST` and `UMAMI_WEBSITE_ID` (Umami instance and site ID)
 	* `DISQUS_SITENAME`
 
 It uses the `tag_cloud` variable for displaying tags in the sidebar. You can control the amount of tags shown with: `TAG_CLOUD_MAX_ITEMS`

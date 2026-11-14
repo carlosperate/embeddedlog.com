@@ -7,14 +7,13 @@ It will configure the right settings based on the Build Mode set in
 pelicanbuildmode.py.
 """
 from __future__ import unicode_literals
-from distutils.version import LooseVersion
 import datetime
 import os
 import sys
 
 # Check version of Pelican
 from pelican import __version__ as pelican_version
-if LooseVersion(pelican_version) < LooseVersion('4.0.0'):
+if int(pelican_version.split('.')[0]) < 4:
     print('Please upgrade Pelican to a version >= 4.0')
     exit(1)
 
@@ -190,10 +189,13 @@ ABOUT_ME = True
 
 # Analytics
 if BUILD_MODE in (BuildMode.LOCALHOST_RELATIVE, BuildMode.LOCALHOST_ABSOLUTE):
-    GOOGLE_ANALYTICS = None
+    GOATCOUNTER_HOST = None
+    UMAMI_HOST = None
 elif BUILD_MODE == BuildMode.PUBLISH:
-    # We don't want any cookies or user tracking
-    GOOGLE_ANALYTICS = None
+    # Self-hosted, cookieless analytics only
+    GOATCOUNTER_HOST = 'angc.embeddedlog.com'
+    UMAMI_HOST = 'an.embeddedlog.com'
+    UMAMI_WEBSITE_ID = 'b1cd7313-ad40-491d-9748-71f6789dee42'
 
 ###############################################################################
 # Feed configuration
