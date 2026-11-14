@@ -32,5 +32,5 @@ build prints a warning.
 Run the parser regression checks from the repository root:
 
 ```sh
-pipenv run python -m unittest plugins.social_card.test_socialcard
+python -m unittest plugins.social_card.test_socialcard
 ```

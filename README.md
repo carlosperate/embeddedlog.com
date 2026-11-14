@@ -11,18 +11,13 @@ git clone --recursive https://github.com/carlosperate/carlosperate.github.io.git
 General documentation also found in the
 [Pelican website](http://docs.getpelican.com/en/stable/install.html).
 
-```
-pip install pelican
-pip install markdown
-pip install webpreview
-pip install invoke
-pip install setuptools
-```
-
-Or if you have pipenv:
+This project dependencies are a dependency group in `pyproject.toml`.
+Use pip >= 25.1 in a virtual environment:
 
 ```
-pipenv install .
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --group site
 ```
 
 ## Repository structure
