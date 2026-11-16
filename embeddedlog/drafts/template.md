@@ -3,7 +3,7 @@ Author: carlosperate
 Date: 2000-12-30
 Modified: 2019-12-27
 Category: Blog
-Tags: github, documentation, web-tech, raspberry-pi, beaglebone, sbc, arduino, microbit
+Tags: github, documentation, web, raspberry-pi, sbc, arduino, microbit, micropython, python, javascript
 Slug: template
 Summary: Summary in 50 words?
 Lang: en
@@ -93,17 +93,38 @@ Minimal:
 
 ## Adding Social Cards
 
-Here is a social card on its own:
+Here are 3 social cards, 1st often without image, 2nd often with image, 3rd
+has the title & description hardcoded:
 
 ::SocialCard[https://google.com]
 
-Makes sense to add a link at the top as well:
-
-[https://bing.com](https://bing.com)
-
 ::SocialCard[https://bing.com]
 
-::SocialCard[https://embeddedlog.com]{"option1": true}
+::SocialCard[https://embeddedlog.com]{
+    "title": "Embedded Log",
+    "description": "Overrides the fetched title and description"
+}
+
+
+## Adding Tables
+
+Markdown tables use a soft blue header and alternating row shades automatically:
+
+| Interface | Typical use |
+|-----------|-------------|
+| UART | Serial logs and a command-line console. |
+| I2C | Connecting sensors with a shared clock and data line. |
+| SPI | Communicating with displays and external memory. |
+| SWD | Programming and debugging a microcontroller. |
+
+Use colons in the separator row to align individual columns. This example uses
+illustrative measurements, inline code and right-aligned numbers:
+
+| Build | Flags | Size (KiB) |
+|:------|:-----:|-----------:|
+| Debug | `-Og` | 128 |
+| Release | `-O2` | 96 |
+| Small | `-Os` | 80 |
 
 
 ## Adding Code Snippets
@@ -171,6 +192,12 @@ while True:
 ```
 
 ## Conclusion
+
+This is a quote:
+
+> *Any sufficiently advanced technology is indistinguishable from magic.*
+>
+> - Arthur C. Clarke
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
 incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis

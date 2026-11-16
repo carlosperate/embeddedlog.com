@@ -145,6 +145,69 @@ a:hover, a:focus {
     border-bottom: 2px solid #a3451c;
 }
 
+/* Article tables: soft blue headings, copper rules and alternating rows.
+   Keep Pygments line-number tables and reStructuredText footnotes separate. */
+.entry-content table:not(.highlighttable):not(.footnote) {
+    width: 100%;
+    margin: 24px 0;
+    border: 1px solid #d7e0e4;
+    border-radius: 4px;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+    font-size: 18px;
+    line-height: 1.65;
+    text-align: left;
+    word-break: normal;
+    overflow-wrap: anywhere;
+}
+
+.entry-content table:not(.highlighttable):not(.footnote) > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+    padding: 18px 20px;
+    vertical-align: top;
+}
+
+.entry-content table:not(.highlighttable):not(.footnote) > thead > tr > :is(th, td) {
+    background: #e1eaee;
+    border-bottom: 2px solid #eba07a;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.5;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.entry-content table:not(.highlighttable):not(.footnote) > tbody > tr:nth-child(odd) {
+    background: #f8fafb;
+}
+
+.entry-content table:not(.highlighttable):not(.footnote) > tbody > tr:nth-child(even) {
+    background: #edf2f3;
+}
+
+.entry-content table:not(.highlighttable):not(.footnote) > tbody > tr:not(:last-child) > :is(th, td) {
+    border-bottom: 1px solid #d7e0e4;
+}
+
+.entry-content table:not(.highlighttable):not(.footnote) > tbody > tr > :first-child {
+    font-weight: bold;
+}
+
+/* Give labels room in two-column comparisons; let wider tables size naturally. */
+.entry-content table:not(.highlighttable):not(.footnote) > tbody > tr > :first-child:nth-last-child(2) {
+    width: 144px;
+}
+
+@media (max-width: 767px) {
+    .entry-content table:not(.highlighttable):not(.footnote) > :is(thead, tbody, tfoot) > tr > :is(th, td) {
+        padding: 14px 10px;
+    }
+
+    .entry-content table:not(.highlighttable):not(.footnote) > tbody > tr > :first-child:nth-last-child(2) {
+        width: 100px;
+    }
+}
+
 /* Copper instead of Bootstrap's pink; Bootstrap's pre code rule still resets code blocks */
 code {
     padding: 2px 6px;
