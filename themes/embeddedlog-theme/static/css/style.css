@@ -1,3 +1,16 @@
+/* Shared colours for the theme. Component-specific colours live with their styles. */
+:root {
+    --color-primary: #2c3e50;
+    --color-navigation-background: #243744;
+    --color-text-muted: #526574;
+    --color-text-on-dark: #fff;
+    --color-accent: #eba07a;
+    --color-accent-text: #a3451c;
+    --color-surface: #fff;
+    --color-surface-muted: #f2f5f5;
+    --color-card-border: #dce4e8;
+}
+
 html,
 body {
     font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -13,6 +26,7 @@ html {
 
 /* Shows html's tile; a second fixed copy here costs Chrome a document-sized layer */
 body {
+    color: var(--color-primary);
     background-color: transparent;
 }
 
@@ -23,7 +37,7 @@ html {
 
 /* Light copper instead of the browser's default blue; still visible on the dark code blocks */
 ::selection {
-    background: rgba(235, 160, 122, 0.3);
+    background: color-mix(in srgb, var(--color-accent) 30%, transparent);
 }
 
 /* Reduce font size on lower resolutions */
@@ -90,7 +104,7 @@ hr {
     margin-bottom: 16px;
     border: 0;
     border-top: 1px solid #ECF0F1;
-    border-bottom: 2px solid #FFFFFF;
+    border-bottom: 2px solid var(--color-surface);
 }
 
 /* Modifying the article info */
@@ -132,7 +146,7 @@ a, a:hover, a:focus {
 }
 
 a:hover, a:focus {
-    text-decoration-color: #a3451c;
+    text-decoration-color: var(--color-accent-text);
 }
 
 .entry-content a {
@@ -142,15 +156,20 @@ a:hover, a:focus {
 
 .entry-content a:hover {
     text-decoration: none;
-    border-bottom: 2px solid #a3451c;
+    border-bottom: 2px solid var(--color-accent-text);
 }
 
 /* Article tables: soft blue headings, copper rules and alternating rows.
    Keep Pygments line-number tables and reStructuredText footnotes separate. */
 .entry-content table:not(.highlighttable):not(.footnote) {
+    --table-border-color: #d7e0e4;
+    --table-header-background: #e1eaee;
+    --table-row-odd-background: #f8fafb;
+    --table-row-even-background: #edf2f3;
+
     width: 100%;
     margin: 24px 0;
-    border: 1px solid #d7e0e4;
+    border: 1px solid var(--table-border-color);
     border-radius: 4px;
     border-collapse: separate;
     border-spacing: 0;
@@ -168,8 +187,8 @@ a:hover, a:focus {
 }
 
 .entry-content table:not(.highlighttable):not(.footnote) > thead > tr > :is(th, td) {
-    background: #e1eaee;
-    border-bottom: 2px solid #eba07a;
+    background: var(--table-header-background);
+    border-bottom: 2px solid var(--color-accent);
     font-size: 18px;
     font-weight: bold;
     line-height: 1.5;
@@ -178,15 +197,15 @@ a:hover, a:focus {
 }
 
 .entry-content table:not(.highlighttable):not(.footnote) > tbody > tr:nth-child(odd) {
-    background: #f8fafb;
+    background: var(--table-row-odd-background);
 }
 
 .entry-content table:not(.highlighttable):not(.footnote) > tbody > tr:nth-child(even) {
-    background: #edf2f3;
+    background: var(--table-row-even-background);
 }
 
 .entry-content table:not(.highlighttable):not(.footnote) > tbody > tr:not(:last-child) > :is(th, td) {
-    border-bottom: 1px solid #d7e0e4;
+    border-bottom: 1px solid var(--table-border-color);
 }
 
 .entry-content table:not(.highlighttable):not(.footnote) > tbody > tr > :first-child {
@@ -211,8 +230,8 @@ a:hover, a:focus {
 /* Copper instead of Bootstrap's pink; Bootstrap's pre code rule still resets code blocks */
 code {
     padding: 2px 6px;
-    color: #a3451c;
-    background-color: #f2f5f5;
+    color: var(--color-accent-text);
+    background-color: var(--color-surface-muted);
 }
 
 /* The summary opens the article in larger regular text, not a bold paragraph */
@@ -254,7 +273,7 @@ code {
     display: flex;
     flex-direction: column;
     min-width: 0;
-    border: 1px solid #dce4e8;
+    border: 1px solid var(--color-card-border);
     border-radius: 6px;
     overflow: hidden;
 }
@@ -371,7 +390,7 @@ code {
 
 .article-read-more:hover .article-read-more-label,
 .article-read-more:focus .article-read-more-label {
-    text-decoration-color: #a3451c;
+    text-decoration-color: var(--color-accent-text);
 }
 
 .article-read-more-arrow {
@@ -381,7 +400,7 @@ code {
 }
 
 .article-read-more:focus-visible {
-    outline: 2px solid #2c3e50;
+    outline: 2px solid var(--color-primary);
     outline-offset: 4px;
 }
 
@@ -468,7 +487,7 @@ figure.floatcenter, .align-center {
 }
 
 #tags .panel-heading {
-    background: #fff;
+    background: var(--color-surface);
     padding: 14px;
 }
 
@@ -483,12 +502,12 @@ figure.floatcenter, .align-center {
 
 #tags .panel-title a::before {
     content: "# ";
-    color: #a3451c;
+    color: var(--color-accent-text);
 }
 
 #tags .badge {
     background: transparent;
-    color: #526574;
+    color: var(--color-text-muted);
     border: 1px solid #d9dfe0;
     border-radius: 2px;
 }
@@ -498,7 +517,7 @@ figure.floatcenter, .align-center {
 /****************************/
 /* Terminal signature: keep the technical cue confined to the wordmark. */
 .navbar {
-    background: #243744;
+    background: var(--color-navigation-background);
     box-shadow: none;
 }
 
@@ -510,7 +529,7 @@ figure.floatcenter, .align-center {
 
 .navbar-brand::before {
     content: ">_ ";
-    color: #eba07a;
+    color: var(--color-accent);
 }
 
 .navbar-nav > li > a {
@@ -522,19 +541,19 @@ figure.floatcenter, .align-center {
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
-    color: #eba07a;
+    color: var(--color-accent);
 }
 
 /* Mark the current top-level page without changing active project dropdown items */
 .navbar-default .navbar-nav > li.active > a,
 .navbar-default .navbar-nav > li.active > a:focus {
-    color: #fff;
+    color: var(--color-text-on-dark);
     background-color: transparent;
-    box-shadow: inset 0 -3px 0 #eba07a;
+    box-shadow: inset 0 -3px 0 var(--color-accent);
 }
 
 .navbar-default .navbar-nav > li.active > a:hover {
-    color: #eba07a;
+    color: var(--color-accent);
     background-color: transparent;
 }
 
@@ -543,12 +562,12 @@ figure.floatcenter, .align-center {
     /* A left bar follows the phone menu's vertical list */
     .navbar-default .navbar-nav > li.active > a,
     .navbar-default .navbar-nav > li.active > a:focus {
-        box-shadow: inset 3px 0 0 #eba07a;
+        box-shadow: inset 3px 0 0 var(--color-accent);
     }
 
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
-        color: #eba07a;
+        color: var(--color-accent);
     }
 }
 
@@ -562,7 +581,7 @@ ul.nav .dropdown-menu li {
 }
 ul.nav .dropdown-menu li a {
     padding: 16px;
-    color: #2c3e50;
+    color: var(--color-primary);
 }
 
 /* Navigation bar drop down on mouse over */
@@ -570,15 +589,15 @@ ul.nav li.dropdown:hover > ul.dropdown-menu {
     display: block;
 }
 ul.nav .dropdown-menu li:hover {
-    background-color: #2c3e50 !important;
+    background-color: var(--color-primary) !important;
 }
 ul.nav .dropdown-menu li a:hover {
-    color: #FFFFFF;
+    color: var(--color-text-on-dark);
 }
 
 /* Active list drop down menu */
 ul.nav .dropdown-menu li.active a {
-    color: #FFFFFF;
+    color: var(--color-text-on-dark);
 }
 
 
@@ -609,7 +628,7 @@ ul.nav .dropdown-menu li.active a {
 }
 
 #banner h1 {
-    color: #fff;
+    color: var(--color-text-on-dark);
     font-family: "HelveticaNeue-CondensedBold","Helvetica Neue CE 600 Condensed","Helvetica Neue LT Condensed","Helvetica Neue 600 Condensed","HelveticaNeue-BoldCondensed","Helvetica Neue BoldCondensed","Helvetica Neue",Helvetica,Arial,sans-serif;
     font-size: 3.2rem;
     font-stretch: condensed;
@@ -618,7 +637,7 @@ ul.nav .dropdown-menu li.active a {
     margin: 0;
 }
 #banner .intro {
-    color: #fff;
+    color: var(--color-text-on-dark);
     font-size: 21px;
     line-height: 1.33;
     opacity: 0.75;
@@ -671,12 +690,12 @@ ul.nav .dropdown-menu li.active a {
     bottom: 50px;
 }
 .carousel-indicators li:hover {
-    border-color: #eba07a;
-    background-color: #eba07a;
+    border-color: var(--color-accent);
+    background-color: var(--color-accent);
 }
 .carousel-control:hover,
 .carousel-control:focus-visible {
-    color: #eba07a;
+    color: var(--color-accent);
 }
 @media (max-width: 767px) {
     .carousel-indicators {
@@ -690,7 +709,7 @@ ul.nav .dropdown-menu li.active a {
     position: relative;
     height: calc(100% - 48px);
     z-index: 1;
-    color: #fff;
+    color: var(--color-text-on-dark);
     text-shadow: 0 0 1px #000000, 0 0 2px #000000;
     /* The following change with resolution */
     margin: 0px 20%;
@@ -715,17 +734,17 @@ ul.nav .dropdown-menu li.active a {
 /* Light buttons stand out on the banner photos: solid primary, translucent secondary */
 .carousel-content .btn-primary,
 .carousel-content .btn-default {
-    --banner-light: color-mix(in srgb, #2c3e50 10%, white);
-    border-color: var(--banner-light);
+    --banner-button-background: color-mix(in srgb, var(--color-primary) 10%, var(--color-surface));
+    border-color: var(--banner-button-background);
     transition: color 0.15s ease-out, background-color 0.15s ease-out, border-color 0.15s ease-out, box-shadow 0.15s ease-out;
 }
 .carousel-content .btn-primary {
-    color: #2c3e50;
-    background-color: var(--banner-light);
+    color: var(--color-primary);
+    background-color: var(--banner-button-background);
     text-shadow: none;
 }
 .carousel-content .btn-default {
-    color: #fff;
+    color: var(--color-text-on-dark);
     background-color: rgba(16, 26, 36, 0.65);
 }
 /* Copper edges and glow connect the hover state to the site's link accents */
@@ -733,18 +752,18 @@ ul.nav .dropdown-menu li.active a {
 .carousel-content .btn-primary:focus-visible,
 .carousel-content .btn-default:hover,
 .carousel-content .btn-default:focus-visible {
-    border-color: #eba07a;
-    box-shadow: 0 0 0 3px rgba(235, 160, 122, 0.25), 0 0 18px rgba(235, 160, 122, 0.3);
+    border-color: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-accent) 25%, transparent), 0 0 18px color-mix(in srgb, var(--color-accent) 30%, transparent);
     text-shadow: none;
 }
 .carousel-content .btn-primary:hover,
 .carousel-content .btn-primary:focus-visible {
-    color: #2c3e50;
-    background-color: #fff;
+    color: var(--color-primary);
+    background-color: var(--color-surface);
 }
 .carousel-content .btn-default:hover,
 .carousel-content .btn-default:focus-visible {
-    color: #fff;
+    color: var(--color-text-on-dark);
     background-color: rgba(16, 26, 36, 0.65);
 }
 .carousel-content .fa,
@@ -908,7 +927,7 @@ ul.nav .dropdown-menu li.active a {
 }
 
 .aboutme-container {
-    border: 2px #fff solid;
+    border: 2px var(--color-surface) solid;
     border-radius: 12px;
     margin: -90px 20px 36px 20px;
     padding: 0;
@@ -978,14 +997,14 @@ ul.nav .dropdown-menu li.active a {
 #aboutme .profile-link:hover .profile-link-label,
 #aboutme .profile-link:focus .profile-link-label {
     text-decoration: underline;
-    text-decoration-color: #a3451c;
+    text-decoration-color: var(--color-accent-text);
 }
 
 #aboutme .profile-link:hover .fab,
 #aboutme .profile-link:focus .fab,
 #aboutme .profile-link:hover .aboutme-social-icon,
 #aboutme .profile-link:focus .aboutme-social-icon {
-    color: #a3451c;
+    color: var(--color-accent-text);
 }
 
 #aboutme .profile-link .fab,
@@ -1071,7 +1090,7 @@ ul.nav .dropdown-menu li.active a {
 /********************************/
 .container-blurry {
     backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, .6);
+    background: color-mix(in srgb, var(--color-surface) 60%, transparent);
     box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 .container-blurry h1 {
@@ -1127,13 +1146,13 @@ ul.nav .dropdown-menu li.active a {
 
 /* Same navy as the linked items; Flatly's #95a5a6 is only 2.2:1 on the bar */
 .breadcrumb > .active {
-    color: #2c3e50;
+    color: var(--color-primary);
 }
 
 /* Keep article metadata secondary to the title, with each date on one line. */
 #article-title-breadcrumps .new-breadcrump {
     padding: 12px 20px;
-    background: #f2f5f5;
+    background: var(--color-surface-muted);
     gap: 6px 20px;
 }
 
@@ -1151,7 +1170,7 @@ ul.nav .dropdown-menu li.active a {
     flex-wrap: wrap;
     justify-content: flex-end;
     gap: 6px 18px;
-    color: #526574;
+    color: var(--color-text-muted);
     font-size: 14px;
     line-height: 1.8;
 }
@@ -1180,7 +1199,7 @@ ul.nav .dropdown-menu li.active a {
 /*******************************************************/
 .container_body {
     border-radius: 0px 0px 3px 3px;
-    background: #FFFFFF !important;
+    background: var(--color-surface) !important;
     padding: 32px 32px;
     /* box-shadow: 0px 0px 24px 1px rgba(130,130,130,0.72); */
 }
@@ -1194,7 +1213,7 @@ ul.nav .dropdown-menu li.active a {
 
 .container_footer {
     border-radius: 3px 3px 0px 0px;
-    background: #FFFFFF !important;
+    background: var(--color-surface) !important;
     padding: 16px 32px 0px 32px;
     line-height: 1 !important;
     font-size: 14px;
@@ -1203,7 +1222,7 @@ ul.nav .dropdown-menu li.active a {
 /* The navy rule ties the footer to the header; utilities stack on phones. */
 footer hr {
     border: 0;
-    border-top: 1px solid #243744;
+    border-top: 1px solid var(--color-navigation-background);
 }
 
 footer .col-xs-9 {
@@ -1250,7 +1269,7 @@ footer .col-xs-3 {
     gap: 9px;
     margin: 28px 0 16px;
     padding: 12px 0 0;
-    color: #526574;
+    color: var(--color-text-muted);
 }
 
 .article-footer-label {
@@ -1298,7 +1317,7 @@ footer .col-xs-3 {
     flex-wrap: wrap;
     gap: 10px;
     padding-bottom: 12px;
-    color: #526574;
+    color: var(--color-text-muted);
 }
 
 .article-sharing-actions {
@@ -1367,7 +1386,7 @@ footer .col-xs-3 {
     --brand: #5cbe4a;
 }
 .article-copy-link {
-    --brand: #2c3e50;
+    --brand: var(--color-primary);
 }
 
 .article-sharing .shariff li a,
@@ -1378,13 +1397,13 @@ footer .col-xs-3 {
 
 .article-sharing .shariff li a:hover,
 .article-copy-link:hover {
-    color: #fff;
+    color: var(--color-text-on-dark);
     background-color: var(--brand);
 }
 
 /* Reddit's orange still shouts as a tint, so its icon is dimmed further */
 .article-sharing .shariff .reddit a .fab {
-    color: color-mix(in srgb, var(--brand) 45%, #526574);
+    color: color-mix(in srgb, var(--brand) 45%, var(--color-text-muted));
 }
 .article-sharing .shariff .reddit a:hover .fab {
     color: inherit;
@@ -1461,30 +1480,32 @@ footer .col-xs-3 {
 /*************************************/
 /* Fixed height so the image slot keeps the 1.91:1 shape the plugin fits images to */
 .social-card {
+    --social-card-divider-color: #e3eaed;
+
     display: flex;
     height: 140px;
     margin: 24px 0;
     overflow: hidden;
-    background: #ffffff;
+    background: var(--color-surface);
     border-radius: 6px;
     transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out;
 }
 
 .entry-content a.social-card,
 .entry-content a.social-card:hover {
-    color: #2c3e50;
+    color: var(--color-primary);
     text-decoration: none;
-    border: 1px solid #dce4e8;
+    border: 1px solid var(--color-card-border);
 }
 
 .entry-content a.social-card:hover,
 .entry-content a.social-card:focus-visible {
-    border-color: #eba07a;
-    box-shadow: 0 3px 10px rgba(44, 62, 80, 0.1);
+    border-color: var(--color-accent);
+    box-shadow: 0 3px 10px color-mix(in srgb, var(--color-primary) 10%, transparent);
 }
 
 .social-card:focus-visible {
-    outline: 2px solid #2c3e50;
+    outline: 2px solid var(--color-primary);
     outline-offset: 3px;
 }
 
@@ -1497,7 +1518,7 @@ footer .col-xs-3 {
     justify-content: center;
     overflow: hidden;
     background: #eef2f3;
-    border-right: 1px solid #e3eaed;
+    border-right: 1px solid var(--social-card-divider-color);
 }
 
 /* The image's own colours, blurred, fill whatever the image leaves uncovered */
@@ -1546,7 +1567,7 @@ footer .col-xs-3 {
     max-width: 52px;
     max-height: 52px;
     padding: 12px;
-    background: #ffffff;
+    background: var(--color-surface);
     border-radius: 12px;
     box-shadow: 0 2px 8px rgba(20, 30, 40, 0.15);
 }
@@ -1563,7 +1584,7 @@ footer .col-xs-3 {
     font-size: 24px;
     line-height: 32px;
     text-align: center;
-    color: #526574;
+    color: var(--color-text-muted);
 }
 
 /* Favicon fallback: 16px icons scale up to the placeholder's size, larger ones match icon cards */
@@ -1606,7 +1627,7 @@ footer .col-xs-3 {
 .social-card:hover .social-card-title,
 .social-card:focus-visible .social-card-title {
     text-decoration: underline;
-    text-decoration-color: #a3451c;
+    text-decoration-color: var(--color-accent-text);
     text-decoration-thickness: 2px;
     text-underline-offset: 3px;
 }
@@ -1614,7 +1635,7 @@ footer .col-xs-3 {
 .social-card-desc {
     font-size: 16px;
     line-height: 1.5;
-    color: #526574;
+    color: var(--color-text-muted);
 }
 
 .social-card-source {
@@ -1624,9 +1645,9 @@ footer .col-xs-3 {
     padding: 7px 20px;
     font-size: 14px;
     line-height: 1.4;
-    color: #526574;
+    color: var(--color-text-muted);
     background: #f8fafb;
-    border-top: 1px solid #e3eaed;
+    border-top: 1px solid var(--social-card-divider-color);
 }
 
 .social-card .social-card-favicon {
@@ -1651,7 +1672,7 @@ footer .col-xs-3 {
     .social-card-media {
         flex-basis: 160px;
         border-right: 0;
-        border-bottom: 1px solid #e3eaed;
+        border-bottom: 1px solid var(--social-card-divider-color);
     }
     .social-card .social-card-cover {
         object-fit: contain;
