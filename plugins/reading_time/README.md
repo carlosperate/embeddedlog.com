@@ -14,10 +14,9 @@ speed:
   non-fiction found by a meta-analysis of 190 studies ([Brysbaert, 2019][1]).
   The metadata header, link URLs and link definitions are not counted, and
   inline `code` counts as prose.
-* Code: 3 seconds per non-blank line in ```` ``` ```` fenced blocks. There is
-  no measured reading rate for code, so this is roughly half prose speed for a
-  typical line, while careful [code review][2] runs at around 7 seconds per
-  line.
+* Code: 7 seconds per non-blank line in ```` ``` ```` fenced blocks, about the
+  pace of careful [code review][2]. There is no measured reading rate for code;
+  reading a typical line at half prose speed would take around 3 seconds.
 * Images (`![alt](src)` and `<img>` tags): 12 seconds for the first, one second
   less for each one after, and never less than 3 seconds, as [Medium][3] and
   [Ghost][4] do.

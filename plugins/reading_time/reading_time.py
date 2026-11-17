@@ -14,7 +14,7 @@ from pelican.utils import pelican_open
 # Average silent reading rate for English non-fiction (Brysbaert, 2019).
 WORDS_PER_MINUTE = 238
 # Code has no measured reading rate: ~3 s per line is ~half prose speed, code review is ~7 s.
-SECONDS_PER_CODE_LINE = 7
+SECONDS_PER_CODE_LINE = 4
 
 # Only ``` fences at the start of a line, the one code block style the posts use.
 CODE_BLOCK = re.compile(r"^```.*?\n(.*?)^```", re.MULTILINE | re.DOTALL)
