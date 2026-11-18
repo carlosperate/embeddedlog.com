@@ -38,15 +38,15 @@ Link to a tweeter username: @carlosperate
 
 ## Adding Images
 
-![Talk Schedule Saturday](/images/theme/background_tile.png)
+![Talk Schedule Saturday](/theme/images/background_tile.png)
 
 
 ### Additional Formatting with HTML
 
 These two images fit side to side:
 
-<img src="/images/theme/background_tile.png" alt="alt 1" width="49%">
-<img src="/images/theme/background_tile.png" alt="alt 2" width="49%">
+<img src="/theme/images/background_tile.png" alt="alt 1" width="49%">
+<img src="/theme/images/background_tile.png" alt="alt 2" width="49%">
 
 This one is just slightly wider than the container (only works with no
 sidebar):

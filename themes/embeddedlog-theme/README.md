@@ -62,7 +62,6 @@ This theme honors the following standard Pelican settings:
 	* `DISPLAY_PAGES_ON_MENU`
 	* `DISPLAY_CATEGORIES_ON_MENU`
 	* `MENUITEMS`
-	* `LINKS` (Blogroll will be put in the sidebar instead of the head)
 * Analytics & Comments
 	* `GOATCOUNTER_HOST` (GoatCounter instance, e.g. `angc.embeddedlog.com`)
 	* `UMAMI_HOST` and `UMAMI_WEBSITE_ID` (Umami instance and site ID)
@@ -163,10 +162,9 @@ markdown, `:Menulabel:` in rst).
 
 #### About Me
 
-You can show a short blurb of text about yourself and a picture. The following two settings are used for this:
-
-* Your 'About Me' paragraph will be whatever the `ABOUT_ME` variable is set to (raw html is allowed)
-* Your avatar can be set by pointing the `AVATAR` variable to the relevant picture (e.g. 'images/profile.png')
+Set `ABOUT_ME` to `True` to show the homepage introduction. Edit
+[`templates/includes/aboutme.html`](templates/includes/aboutme.html) to change the text or image path.
+The profile photo is bundled at `static/images/profile_large.jpg`.
 
 #### Sidebar options
 

@@ -80,11 +80,6 @@ TAG_CLOUD_MAX_ITEMS = 10
 SOCIAL = (('GitHub', 'https://github.com/carlosperate'),
           ('Bluesky', 'https://bsky.app/profile/carlosperate.bsky.social'),
           ('LinkedIn', 'https://www.linkedin.com/in/carlos-pa/'),)
-LINKS = (('The Amp Hour podcast', 'http://www.theamphour.com'),
-         ('Embedded.fm podcast', 'http://embedded.fm'),)
-
-# Profile picture
-AVATAR = SITEURL + '/images/theme/profile_large.jpg'
 
 # Pages data (relative to PATH)
 PAGE_PATHS = ['pages']

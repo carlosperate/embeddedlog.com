@@ -5,7 +5,7 @@
 <section class="well well-sm">
     <ul class="list-group list-group-flush">
         {% if SOCIAL %}
-            <li class="list-group-item"><img src="{{ SITEURL}}/images/theme/profile_small.jpg" class="profile_pic" /><h4><span class="icon-label">Social</span></h4>
+            <li class="list-group-item"><img src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/profile_small.jpg" class="profile_pic" /><h4><span class="icon-label">Social</span></h4>
               <ul class="list-group" id="social">
                 {% for name, link in SOCIAL %}
                     {% set name_sanitized = name|lower|replace('+','-plus')|replace(' ','-') %}
@@ -95,7 +95,6 @@
 
         {% include 'includes/github.html' %}
         {% include 'includes/twitter_timeline.html' %}
-        {% include 'includes/links.html' %}
     </ul>
 </section>
 

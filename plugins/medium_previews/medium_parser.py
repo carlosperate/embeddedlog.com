@@ -44,7 +44,7 @@ class MediumParserFake(MediumParser):
     def get_preview_content(self):
         return [{
                 'title': 'Post one',
-                'thumbnailUrl': '/images/theme/background_tile.png',
+                'thumbnailUrl': '/theme/images/background_tile.png',
                 'summary': 'This is the text for blog post one',
                 'url': 'http://github.com'
             }, {

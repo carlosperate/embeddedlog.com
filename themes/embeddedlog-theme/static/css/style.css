@@ -1,14 +1,16 @@
 /* Shared colours for the theme. Component-specific colours live with their styles. */
 :root {
-    --color-primary: #2c3e50;
-    --color-navigation-background: #243744;
-    --color-text-muted: #526574;
+    --color-primary: #253c42;
+    --color-navigation-background: #224049;
+    --color-text-muted: color-mix(in srgb, var(--color-primary) 80%, var(--color-surface));
     --color-text-on-dark: #fff;
     --color-accent: #eba07a;
     --color-accent-text: #a3451c;
     --color-surface: #fff;
-    --color-surface-muted: #f2f5f5;
-    --color-card-border: #dce4e8;
+    --color-surface-muted: color-mix(in srgb, var(--color-primary) 6%, var(--color-surface));
+    --color-card-border: color-mix(in srgb, var(--color-primary) 16%, var(--color-surface));
+    --color-panel-surface: #f7fbfa;
+    --color-panel-surface-muted: #ecf3f1;
 }
 
 html,
@@ -20,7 +22,7 @@ body {
 
 /* On html: body's container-type stops its background reaching the canvas */
 html {
-    background-image: url("/images/theme/background_tile.png");
+    background-image: url("../images/background_tile_teal_light.png");
     background-attachment: fixed;
 }
 
@@ -81,6 +83,38 @@ header h1 {
     margin-top: -40px; /* 24px original -64px anchor */
     font-weight: bold;
 }
+
+/* Section spacing for the main article flow. Keep headings below the fixed navbar. */
+.entry-content > :is(h1, h2, h3, h4, h5) {
+    padding-top: 32px;
+    scroll-margin-top: 44px;
+}
+
+.entry-content > h1 {
+    margin-top: -12px;
+}
+
+.entry-content > h2 {
+    margin: 14px 0 11px;
+}
+
+.entry-content > h3 {
+    margin-top: -4px;
+}
+
+.entry-content > :is(h4, h5) {
+    margin-top: -8px;
+}
+
+.entry-content > h6 {
+    margin-top: 17px;
+    scroll-margin-top: 76px;
+}
+
+.entry-content > p {
+    margin-bottom: 13px;
+}
+
 /* Phones: keep headings below the 28px article title */
 @media (max-width: 767px) {
     .entry-content h2,
@@ -159,13 +193,18 @@ a:hover, a:focus {
     border-bottom: 2px solid var(--color-accent-text);
 }
 
-/* Article tables: soft blue headings, copper rules and alternating rows.
+/* Flatly adds a text underline to table links on top of the article link border. */
+.entry-content table a:not(.btn) {
+    text-decoration: none;
+}
+
+/* Article tables: light headings, thin accent rules and alternating rows.
    Keep Pygments line-number tables and reStructuredText footnotes separate. */
 .entry-content table:not(.highlighttable):not(.footnote) {
     --table-border-color: #d7e0e4;
-    --table-header-background: #e1eaee;
-    --table-row-odd-background: #f8fafb;
-    --table-row-even-background: #edf2f3;
+    --table-header-background: color-mix(in srgb, var(--color-primary) 7%, var(--color-surface));
+    --table-row-odd-background: var(--color-panel-surface);
+    --table-row-even-background: var(--color-panel-surface-muted);
 
     width: 100%;
     margin: 24px 0;
@@ -175,20 +214,20 @@ a:hover, a:focus {
     border-spacing: 0;
     overflow: hidden;
     font-size: 18px;
-    line-height: 1.65;
+    line-height: 1.55;
     text-align: left;
     word-break: normal;
     overflow-wrap: anywhere;
 }
 
 .entry-content table:not(.highlighttable):not(.footnote) > :is(thead, tbody, tfoot) > tr > :is(th, td) {
-    padding: 18px 20px;
+    padding: 12px 16px;
     vertical-align: top;
 }
 
 .entry-content table:not(.highlighttable):not(.footnote) > thead > tr > :is(th, td) {
     background: var(--table-header-background);
-    border-bottom: 2px solid var(--color-accent);
+    border-bottom: 1px solid var(--color-accent);
     font-size: 18px;
     font-weight: bold;
     line-height: 1.5;
@@ -219,7 +258,7 @@ a:hover, a:focus {
 
 @media (max-width: 767px) {
     .entry-content table:not(.highlighttable):not(.footnote) > :is(thead, tbody, tfoot) > tr > :is(th, td) {
-        padding: 14px 10px;
+        padding: 10px;
     }
 
     .entry-content table:not(.highlighttable):not(.footnote) > tbody > tr > :first-child:nth-last-child(2) {
@@ -322,7 +361,7 @@ code {
 
 .article-preview-lead {
     grid-column: 1 / -1;
-    background: #f4f7f8;
+    background: var(--color-surface-muted);
 }
 
 .article-preview-lead .article-preview-image {
@@ -559,6 +598,16 @@ figure.floatcenter, .align-center {
 
 /* Like Flatly, only the phone menu colours dropdown items; desktop ones go white on navy */
 @media (max-width: 767px) {
+    .navbar-default .navbar-toggle {
+        border-color: color-mix(in srgb, var(--color-navigation-background) 80%, var(--color-text-on-dark));
+        background-color: var(--color-navigation-background);
+    }
+
+    .navbar-default .navbar-toggle:hover,
+    .navbar-default .navbar-toggle:focus-visible {
+        border-color: var(--color-accent);
+    }
+
     /* A left bar follows the phone menu's vertical list */
     .navbar-default .navbar-nav > li.active > a,
     .navbar-default .navbar-nav > li.active > a:focus {
@@ -577,6 +626,12 @@ ul.nav .dropdown-menu {
     margin: 0;
     border-radius: 0px 0px 6px 6px;
 }
+
+/* The first menu item should sit flush against the navbar. */
+.navbar-nav > li > .dropdown-menu {
+    border-top: 0;
+}
+
 ul.nav .dropdown-menu li {
 }
 ul.nav .dropdown-menu li a {
@@ -1281,9 +1336,9 @@ footer .col-xs-3 {
 .article-topics a {
     display: inline-block;
     padding: 5px 12px;
-    background: #edf2f3;
+    background: var(--color-surface-muted);
     border-radius: 4px;
-    color: #344e5c;
+    color: var(--color-primary);
     font-size: 14px;
     line-height: 1.65;
     text-decoration: none;
@@ -1291,14 +1346,14 @@ footer .col-xs-3 {
 
 .article-topics a::before {
     content: '#';
-    color: #7b919b;
+    color: var(--color-text-muted);
     margin-right: 5px;
 }
 
 .article-topics a:hover,
 .article-topics a:focus-visible {
-    background: #dfe9e9;
-    color: #1e514b;
+    background: color-mix(in srgb, var(--color-accent) 25%, var(--color-surface));
+    color: var(--color-accent-text);
 }
 
 @media (max-width: 500px) {
@@ -1517,7 +1572,7 @@ footer .col-xs-3 {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    background: #eef2f3;
+    background: color-mix(in srgb, var(--color-panel-surface-muted), var(--color-panel-surface));
     border-right: 1px solid var(--social-card-divider-color);
 }
 
@@ -1530,7 +1585,7 @@ footer .col-xs-3 {
     object-fit: cover;
     filter: blur(24px) saturate(1.2);
     transform: scale(1.4);
-    opacity: 0.7;
+    opacity: 0.56;
 }
 
 .social-card .social-card-image {
@@ -1646,7 +1701,7 @@ footer .col-xs-3 {
     font-size: 14px;
     line-height: 1.4;
     color: var(--color-text-muted);
-    background: #f8fafb;
+    background: color-mix(in srgb, var(--color-panel-surface), var(--color-surface));
     border-top: 1px solid var(--social-card-divider-color);
 }
 
